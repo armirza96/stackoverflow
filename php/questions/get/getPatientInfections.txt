@@ -1,0 +1,12 @@
+SELECT
+       PI.ID,
+        V.name NAME,
+        V.TYPE,
+        PI.dateOfInfection DATE_OF_INFECTION,
+        PI.dateOfCure DATE_OF_CURE
+FROM
+  Patient P
+INNER JOIN PatientInfection PI ON PI.patientID = P.ID
+INNER JOIN Variant V ON V.ID = PI.variantID
+WHERE
+  P.ID = ?

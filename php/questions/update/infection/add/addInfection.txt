@@ -1,0 +1,4 @@
+INSERT INTO PatientInfection
+(patientID, variantID, dateOfInfection, dateOfCure)
+VALUES
+  (?, ?, ?, ?);
