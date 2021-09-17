@@ -1,5 +1,0 @@
-UPDATE CitizenshipStatus
-SET
-  isCitizen = ?,
-  IDNumber = ?
-WHERE patientID = ?
