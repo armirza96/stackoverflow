@@ -1,4 +1,0 @@
-DELETE
-FROM
-  Patient
-WHERE ID = ?

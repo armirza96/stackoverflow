@@ -1,4 +1,0 @@
-INSERT INTO PatientInfection
-(patientID, variantID, dateOfInfection)
-VALUES
-  (?, ?, ?);
