@@ -63,7 +63,8 @@
     <div id="answers-container">
         <table border="0" width="100%" id="answer-pane">
             <col style="width:5%"></col>
-            <col style="width:95%"></col>
+            <col style="width:90%"></col>
+            <col style="width:5%"></col>
 
             <tr>
                 <td style="text-align: center">
@@ -72,6 +73,10 @@
 
                 <td rowspan="3" class="answer-row">        
                     <p class="answer">Type "Hello World."</p>
+                </td>
+
+                <td rowspan="3" class="best-answer">
+                    <!--<button type="button" class="best-answer-button"></button>-->
                 </td>
             </tr>
             <tr>
