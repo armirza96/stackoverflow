@@ -1,0 +1,9 @@
+SELECT
+  ID,
+  user_id,
+  asked_date,
+  text,
+  vote_value
+FROM
+  Question
+WHERE ID = ?
