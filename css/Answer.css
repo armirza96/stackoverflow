@@ -1,5 +1,6 @@
 body{ 
     background-color: #f5f5f5;
+    /*background-color: #F1FAEE;*/
     
     margin-top: 50px;
 }
@@ -72,6 +73,10 @@ body{
     border-bottom: 2px solid rgb(0 0 0 / 0.1);
 }
 
+.best-answer {
+    border-bottom: 2px solid rgb(0 0 0 / 0.1);
+}
+
 #answer-box-name {
     display: block;
     color: black;
@@ -91,7 +96,19 @@ body{
     background-color: white;
     margin: auto;
     border: none;
-    color: #FFC800;
+    color: #cccccc;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    border-radius: 3px;
+}
+
+.best-answer-button {
+    background-color: white;
+    margin: auto;
+    border: none;
+    color: #cccccc;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -103,7 +120,7 @@ body{
     background-color: white;
     margin: auto;
     border: none;
-    color: #F42272;
+    color: #cccccc;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -111,26 +128,34 @@ body{
     border-radius: 3px;
 }
 
-.upvote:focus, .downvote:focus { 
-    outline: none;
+.upvote:hover {
+    color: #FFC800;
+    transition-duration: 0.2s;
 }
 
-.upvote:hover {
-    color: #FF8427;
+.best-answer-button:hover {
+    color: #5bc0eb;
     transition-duration: 0.2s;
 }
 
 .downvote:hover {
-    color: #AF0848;
+    color: #F42272;
     transition-duration: 0.2s;
 }
 
 .upvote:focus { 
-    color: #FF8427;
+    color: #FFC800;
+    outline: none;
+}
+
+.best-answer-button:focus {
+    color: #5bc0eb;
+    outline: none;
 }
 
 .downvote:focus {
-    color: #AF0848;
+    color: #F42272;
+    outline: none;
 }
 
 .text-buttons {

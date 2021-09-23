@@ -2,7 +2,7 @@
 
 
 <body>
-<link rel="stylesheet" href="css/Answer.css">
+<link rel="stylesheet" href="css/Answer.css?version=41">
 <br>
 <div class="main">
 
@@ -76,7 +76,7 @@
                 </td>
 
                 <td rowspan="3" class="best-answer">
-                    <!--<button type="button" class="best-answer-button"></button>-->
+                    <button type="button" class="best-answer-button">★</button>
                 </td>
             </tr>
             <tr>
