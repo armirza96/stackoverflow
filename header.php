@@ -17,11 +17,13 @@
         <a href="#signup">Sign up</a>
         <a href="#ask">Ask a Question</a>
 
+        <!--
         <div class="search-container">
             <form action="/action_page.php">
                 <input type="text" placeholder="Search..." name="search">
                 <button type="submit"><i class="fa fa-search">Submit</i></button>
             </form>
         </div>
+        -->
     </div>
 </head>
