@@ -21,7 +21,7 @@ https://imgur.com/a/dRuVNge < Meeting screenshots
 
 ## Team Members:
 - Meet Vora (40155271)
-- Bilal Yattou (40110820) Section Sd / GitHub ID: Bilal-yat
+- Bilal Yattou (40110820) Section SD / GitHub ID: Bilal-yat
 - Kunal Shah (40153500)
 - Abdul-Rahman Mirza (40058876) / GitHub ID: foxdye96
 - Najeeb Hyatoolla (40133092)
