@@ -3,9 +3,9 @@ https://docs.google.com/document/d/1pOacO4mb_NoBhThXgGI7XlV7jtO9KkaL7A30eXk4nPk/
 
 # Project Description
 
-OBJECTIVE: Program a Stack Overflow-like website. 
+OBJECTIVE: Program a Stack Overflow-like website.
 
-MAJOR FEATURES: 
+MAJOR FEATURES:
 1- Asking and Answering programming questions.
 2- Voting on Answers.
 3- Accept the best answer.
@@ -20,11 +20,10 @@ As this is a private repository, we do not have the capability to write a wiki -
 https://imgur.com/a/dRuVNge < Meeting screenshots
 
 ## Team Members:
-- Meet Vora (40155271) 
-- Bilal Yattou (40110820) Section SC
+- Meet Vora (40155271)
+- Bilal Yattou (40110820) Section SD / GitHub ID: Bilal-yat
 - Kunal Shah (40153500)
-- Abdul-Rahman Mirza 40058876
+- Abdul-Rahman Mirza (40058876) / GitHub ID: foxdye96
 - Najeeb Hyatoolla (40133092)
 - Daniel Henriques da Silva (40157010)
 - Haytham Hnine (40128181) / GitHub ID: haytham5
- 
