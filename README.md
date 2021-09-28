@@ -24,6 +24,6 @@ https://imgur.com/a/dRuVNge < Meeting screenshots
 - Bilal Yattou (40110820) Section SD / GitHub ID: Bilal-yat
 - Kunal Shah (40153500)
 - Abdul-Rahman Mirza (40058876) / GitHub ID: foxdye96
-- Najeeb Hyatoolla (40133092)
+- Najeeb Hyatoolla (40133092) / GitHub ID: NajeebH
 - Daniel Henriques da Silva (40157010) / Github ID: D-H-S
 - Haytham Hnine (40128181) / GitHub ID: haytham5
