@@ -13,9 +13,11 @@
     <div class="topnav">
         <a class="active" href="#home">Slack Overflow</a>
         <a href="#about">About</a>
-        <a href="#login">Log in</a>
-        <a href="#signup">Sign up</a>
+        <a href="login.html">Log in</a>
+        <a href="SignUp.php">Sign up</a>
         <a href="#ask">Ask a Question</a>
+        <a href="#user">Check User Profile</a>
+        <a href="Answer.php">Answer page (Temp)</a>
 
         <!--
         <div class="search-container">
