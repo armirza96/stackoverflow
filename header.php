@@ -12,8 +12,8 @@
 
     <div class="topnav">
         <a class="active" href="#home">Slack Overflow</a>
-        <a href="#about">About</a>
-        <a href="login.html">Log in</a>
+        <!--<a href="#about">About</a>-->
+        <a href="Login.php">Log in</a>
         <a href="SignUp.php">Sign up</a>
         <a href="#ask">Ask a Question</a>
         <a href="#user">Check User Profile</a>
