@@ -1,55 +1,49 @@
-
 body {
-	background-color: #f5f5f5;
-
+  background-color: #f5f5f5;
 }
-.Header-bold{
- 	color: black;
- 	text-align: left;
- 	 font-size: medium;
- 	 font-weight: bold;
- 	 margin-bottom: 1px; 
- 	 margin-top: 1px;
+.Header-bold {
+  color: black;
+  text-align: left;
+  font-size: medium;
+  font-weight: bold;
+  margin-bottom: 1px;
+  margin-top: 1px;
 }
-.Header-small{
-	color: black;
-	text-align: left;
-	font-size: x-small;
-	margin-bottom: `10px;
+.Header-small {
+  color: black;
+  text-align: left;
+  font-size: x-small;
+  margin-bottom: 10px;
 }
-.box{
-	width: 600px;
-	border: 1px solid Gray;
-	border-radius: 5px;
-	text-align: left;
-	margin-top: 5px;
-	margin-bottom: 5px; 
-}
-
-
-.Header-bold #Title{
-margin-top: 15px;
-}
-.Header_small #Title_info{
-}
-.box #Title-container{
+.box {
+  width: 600px;
+  border: 1px solid Gray;
+  border-radius: 5px;
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-
-.Header-bold #Body{
-margin-top: 15px;
+.Header-bold #Title {
+  margin-top: 15px;
 }
-.Header_small #Body_info{
+.Header_small #Title_info {
 }
-.box #Body-container{
-}
-
-
-.Header-bold #Tags{
-margin-top: 20px;
-}
-.Header_small #Tags_info{
-}
-.box #Tags-container{
+.box #Title-container {
 }
 
+.Header-bold #Body {
+  margin-top: 15px;
+}
+.Header_small #Body_info {
+}
+.box #Body-container {
+}
+
+.Header-bold #Tags {
+  margin-top: 20px;
+}
+.Header_small #Tags_info {
+}
+.box #Tags-container {
+}
