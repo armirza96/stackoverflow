@@ -1,5 +1,5 @@
-<?php include("../header.php"); ?>
-<!DOCTYPE html>
+<?php include("header.php"); ?>
+<!--!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,12 +11,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="main.css">
+
     <title>Title</title>
 
-</head>
+</head>-->
 
 <body>
+
+<link rel="stylesheet" href="css/main.css">
 
     <div class="sidebar">
         <ul>
@@ -38,15 +40,15 @@
             <button type="button" class="btn btn-outline-secondary btn-sm">Filter</button>
 
         </div>
-        <a class="question" href="../Answer.php">How do I program?</a>
+        <a class="question" href="Answer.php">How do I program?</a>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
-        <a class="question" href="../Answer.php">How do I program?</a>
+        <a class="question" href="Answer.php">How do I program?</a>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
-        <a class="question" href="../Answer.php">How do I program?</a>
+        <a class="question" href="Answer.php">How do I program?</a>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
-        <a class="question" href="../Answer.php">How do I program?</a>
+        <a class="question" href="Answer.php">How do I program?</a>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
-        <a class="question" href="../Answer.php">How do I program?</a>
+        <a class="question" href="Answer.php">How do I program?</a>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
         <br>
         <br>

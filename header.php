@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/header.css">
 
     <div class="topnav">
-        <a class="active" href="#home">Slack Overflow</a>
+        <a class="active" href="main.php">Slack Overflow</a>
         <!--<a href="#about">About</a>-->
         <a href="Login.php">Log in</a>
         <a href="SignUp.php">Sign up</a>

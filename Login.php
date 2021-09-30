@@ -4,7 +4,7 @@
 <title>Log In- Stack Overflow</title>
 <link rel="stylesheet" href="css/login.css" />
 
-<div class="loginbox">
+    <div class="loginbox">
       <img src="defaultpic.png" class="avatar" />
       <h1></h1>
       <form>
@@ -18,5 +18,5 @@
         <a href="#">Don't have an account?</a>
       </form>
     </div>
-  </body>
+</body>
 </html>
