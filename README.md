@@ -20,7 +20,7 @@ As this is a private repository, we do not have the capability to write a wiki -
 https://imgur.com/a/dRuVNge < Meeting screenshots
 
 ## Team Members:
-- Meet Vora (40155271)
+- Meet Vora (40155271) / GitHub ID: Itsmeeeet
 - Bilal Yattou (40110820) Section SD / GitHub ID: Bilal-yat
 - Kunal Shah (40153500) / Github ID: Kunal22shah
 - Abdul-Rahman Mirza (40058876) / GitHub ID: foxdye96
