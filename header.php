@@ -16,7 +16,7 @@
         <a href="Login.php">Log in</a>
         <a href="SignUp.php">Sign up</a>
         <a href="#ask">Ask a Question</a>
-        <a href="#user">Check User Profile</a>
+        <a href="edit-profile.php">Check User Profile</a>
         <a href="Answer.php">Answer page (Temp)</a>
 
         <!-- <form class="d-flex m-2 "> <input class="form-control mr-2" type="search" placeholder="Search..." aria-label="Search"> <button class="btn btn-outline-light" type="submit">Search</button> </form> -->

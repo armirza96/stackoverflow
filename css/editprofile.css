@@ -13,9 +13,10 @@ body{
     margin: auto;
     width: 450px;
     height: 800px;
-    border: 2px solid black;
-    box-shadow: -3px -3px 7px white;
-    border-radius: 5px ;
+    /*border: 2px solid black; 
+    box-shadow: -3px -3px 7px white;*/
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     background-color: white;
     margin-top: 100px;
     overflow: hidden;

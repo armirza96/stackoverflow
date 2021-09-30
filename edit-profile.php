@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UserProfile</title>
-    <link rel = "stylesheet" href="editprofile.css">
+    <link rel = "stylesheet" href="css/editprofile.css">
 </head>
 <body>
 
@@ -33,6 +33,8 @@
         <button style="float: right;margin:10px 18.2% 0 0;">Update</button>
 
     </div>
+
+    <br>
     
 </body>
 </html>

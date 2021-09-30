@@ -2,7 +2,7 @@
 
 
 <body>
-<link rel="stylesheet" href="css/Answer.css?version=41">
+<link rel="stylesheet" href="css/Answer.css">
 <br>
 <div class="main">
 
