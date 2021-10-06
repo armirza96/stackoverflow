@@ -1,8 +1,10 @@
 
+
 body {
-	background-color: #f5f5f5;
+background-color: #f5f5f5;
 
 }
+/* i dont know why but even tho I have changed =some aspects here when I look at it on local host they will not change for example the colour for Header-bold is still red*/
 .Header-bold{
  	color: black;
  	text-align: left;
@@ -14,42 +16,42 @@ body {
 .Header-small{
 	color: black;
 	text-align: left;
-	font-size: x-small;
-	margin-bottom: `10px;
+	font-size: small;
+	margin-top: 8px;
+	margin-bottom: 3px;
 }
 .box{
-	width: 600px;
 	border: 1px solid Gray;
 	border-radius: 5px;
 	text-align: left;
 	margin-top: 5px;
 	margin-bottom: 5px; 
 }
+.text-buttons{
+	border-top: 1px solid red;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+
+    border-top-left-radius:  7px;
+    border-top-right-radius:  7px;
+}
+.text-buttons .button {
+    background-color: white;
+    border: none;
+    color: grey;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+
+    border-radius: 7px;
+}
+  
+.text-buttons .button:hover {
+    color: black;
+}
 
 
-.Header-bold #Title{
-margin-top: 15px;
-}
-.Header_small #Title_info{
-}
-.box #Title-container{
-}
-
-
-.Header-bold #Body{
-margin-top: 15px;
-}
-.Header_small #Body_info{
-}
-.box #Body-container{
-}
-
-
-.Header-bold #Tags{
-margin-top: 20px;
-}
-.Header_small #Tags_info{
-}
-.box #Tags-container{
-}
 
