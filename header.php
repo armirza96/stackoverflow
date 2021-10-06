@@ -11,19 +11,15 @@
     <link rel="stylesheet" href="css/header.css">
 
     <div class="topnav">
-        <a class="active" href="#home">Slack Overflow</a>
-        <a href="#about">About</a>
-        <a href="#login">Log in</a>
-        <a href="#signup">Sign up</a>
+        <a class="active" href="main.php">Slack Overflow</a>
+        <!--<a href="#about">About</a>-->
+        <a href="Login.php">Log in</a>
+        <a href="SignUp.php">Sign up</a>
         <a href="#ask">Ask a Question</a>
+        <a href="edit-profile.php">Check User Profile</a>
+        <a href="Answer.php">Answer page (Temp)</a>
 
-        <!--
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="Search..." name="search">
-                <button type="submit"><i class="fa fa-search">Submit</i></button>
-            </form>
-        </div>
-        -->
+        <!-- <form class="d-flex m-2 "> <input class="form-control mr-2" type="search" placeholder="Search..." aria-label="Search"> <button class="btn btn-outline-light" type="submit">Search</button> </form> -->
+
     </div>
 </head>
