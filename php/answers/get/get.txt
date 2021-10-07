@@ -1,0 +1,10 @@
+SELECT
+  ID,
+  userID,
+  answeredDate,
+  text,
+  voteValue,
+  isAccepted,
+FROM
+  Answer
+WHERE questionID = ?

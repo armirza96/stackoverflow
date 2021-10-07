@@ -1,9 +1,9 @@
 SELECT
   ID,
   user_id,
-  asked_date,
+  date,
   text,
-  vote_value
+  voteValue
 FROM
   Question
 WHERE ID = ?
