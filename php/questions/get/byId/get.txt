@@ -1,6 +1,6 @@
 SELECT
   ID,
-  user_id,
+  userID,
   date,
   text,
   voteValue
