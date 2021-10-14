@@ -60,7 +60,7 @@ body{
 }
 
 .answer {
-    display: block;
+    /*display: block;*/
     color: black;
     text-align: left;
     /*padding: 17px 13px;*/
@@ -103,6 +103,8 @@ body{
     font-size: 35px;
     border-radius: 3px;
 }
+
+
 
 .best-answer-button {
     background-color: white;
