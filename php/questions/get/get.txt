@@ -1,8 +1,8 @@
 SELECT
   ID,
-  user_id,
-  asked_date,
+  userID,
+  date,
   text,
-  vote_value
+  voteValue
 FROM
   Question

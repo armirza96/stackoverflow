@@ -1,9 +1,7 @@
 SELECT
-  ID,
   userID,
   date,
-  text,
-  voteValue
+  text
 FROM
-  Question
+  Answer
 WHERE ID = ?
