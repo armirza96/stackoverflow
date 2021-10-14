@@ -1,0 +1,5 @@
+SELECT
+        EMAIL,
+        PASSWORD
+FROM user
+WHERE EMAIL = ?

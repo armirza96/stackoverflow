@@ -4,7 +4,7 @@
 **/
 
 function getData($path, $bindings = null) {
-  require 'connection.php';
+  require_once 'connection.php';
 
   $myfile = fopen($path, "r") or die("Unable to open file!");
 
@@ -12,8 +12,6 @@ function getData($path, $bindings = null) {
 
   fclose($myfile);
 
-  // these lines are needed when we need to bind parameters to our sql
-  // prevents sql injection
    $stmt = $conn->prepare($sql);
 
   if($bindings !== null && !empty($bindings)) {
