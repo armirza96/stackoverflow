@@ -3,27 +3,27 @@ require_once("././getter.php");
 
 $data = [];
 
-$e = $_POST["email"];
-$p = $_POST["pass"];
+$email = $_POST["email"];
+$password = $_POST["password"];
 
 $bindings = [];
 
 $bindings["BINDING_TYPES"] = "s";
 $bindings["VALUES"] = array($email);
 
-$user = getData("user/authentication/sql.txt")[0];
+$user = getData("user/authenticate/sql.txt", $bindings)[0];
 
 if(!empty($user)){
-    $encrypted_pass = sha1($p);
+    //$encrypted_pass = sha1($password);
 
-    if(password_verify($p, $user["PASSWORD"])){
+    if(password_verify($password, $user["PASSWORD"])){
 
-        $_SESSION["ACCID"] = $user["ACCOUNT_ID"];
-        $data = array("RESULT" => "1");
+        $_SESSION["ACCID"] = $user["ID"];
+        $data = array("RESULT" => "1", "MESSAGE" => "Successfully logged in", "ID" => $user["ID"]);
     }else{
-       $data = array("RESULT"=>"2", "ERROR" => "Password is incorrect.");
+       $data = array("RESULT"=>"2", "MESSAGE" => "Password is incorrect");
     }
 
 } else {
-    $data = array("RESULT"=>"2", "ERROR" => "Email does not exist.");
+    $data = array("RESULT"=>"2", "MESSAGE" => "Email does not exist");
 }
