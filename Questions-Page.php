@@ -1,23 +1,30 @@
-<style>
 <?php
-include 'Question-Page.css';
+include 'header.php';
 ?>
-</style>
-<!DOCTYPE html>
-<html>
 <link rel="stylesheet" href="Questions-Page.css" type="text/css">
-<?php include ('header.php');?> 
 <body>
+<div class="sidebar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li> <a href="#questions">Questions</a></li>
+            <li><a href="#tag">Tag</a></li>
+            <li> <a href="#user">User</a></li>
+            <li> <a href="#teams">Teams</a></li>
+        </ul>
+    </div>
+<div class = "container">
+<div class = "main">
+<div class = "question-page">
 <div id="Title-container">
-        <p class="Header-bold">Title</p>
-        <p class="Header-small">Be specific and imagine you're asking a question to another person</p>
+        <p id = "Title name">Title</p>
+        <p id = "Title description">Be specific and imagine you're asking a question to another person</p>
         
-        <textarea class="box" rows="1" cols="200" placeholder="e.g. is there an R function for finding the index of an element in a vector?"></textarea>
+        <textarea class="box" rows="1" cols="101" placeholder="e.g. is there an R function for finding the index of an element in a vector?"></textarea>
     </div>
 
 <div id="Question-box-container">
-        <p class="Header-bold">Body</p>
-        <p class="Header-small">Include all the information someone would need to answer your question</p>
+         <p id = "Body name">Body</p>
+        <p id = "body description">Include all the information someone would need to answer your question</p>
 
         <div class="text-buttons">
             <button class="button"><strong>B</strong></button>
@@ -26,18 +33,23 @@ include 'Question-Page.css';
             <button class="button">list</button>
         </div>
 
-        <textarea class="box" rows="10" cols="200"></textarea>
+       <textarea class="answer-box" rows="10" cols="101"></textarea>
     </div>
 
     <div id="Tags-container">
-        <p class="Header-bold">Tags</p>
-        <p class="Header-small">Add up to X tags to describe what your question is about</p>
+        <p id = "Tags name">Tags</p>
+        <p id = "tags description">Add up to X tags to describe what your question is about</p>
 
-        <textarea class="box" rows="1" cols="200" placeholder="e.g. (python windows ruby)"></textarea>
+        <textarea class="box" rows="1" cols="101" placeholder="e.g. (python windows ruby)"></textarea>
     </div>
-
+<div>
+    <button class="btn btn-outline-primary btn-sm">Post Question</button>
+</div>
+</div>
+</div>
+</div>
 <link rel="stylesheet" href="css/main.css">
-    
+    <?php include "shared/footer.php" ?>
 </body>
 
 </html>
