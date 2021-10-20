@@ -46,13 +46,6 @@ body{
     font-size: 20px;
 }
 
-#answer-box-container{
-    padding-bottom: 15px;    
-    margin: auto;
-    border-bottom: 2px solid rgb(0 0 0 / 0.2);
-    width: 90%;
-}
-
 #answers-container {
     padding-top: 15px;
     padding-right: 5%; 
@@ -77,11 +70,17 @@ body{
     border-bottom: 2px solid rgb(0 0 0 / 0.1);
 }
 
+#answer-box-container{
+    padding-bottom: 15px;    
+    margin: auto;
+    border-bottom: 2px solid rgb(0 0 0 / 0.2);
+    width: 90%;
+}
+
 #answer-box-name {
     display: block;
     color: black;
     text-align: left;
-    /*padding: 17px 13px;*/
     text-decoration: none;
     font-size: 25px;
 }
@@ -90,6 +89,35 @@ body{
     width: 100%;
     padding-left: 10px;
     padding-top: 5px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.text-buttons {
+    border-top: 1px solid rgb(0 0 0 / 0.5);
+    border-left: 1px solid rgb(0 0 0 / 0.5);
+    border-right: 1px solid rgb(0 0 0 / 0.5);
+
+    border-top-left-radius:  7px;
+    border-top-right-radius:  7px;
+}
+
+.text-buttons .button {
+    background-color: white; 
+    border: none;
+    color: grey;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+
+    border-radius: 7px;
+}
+  
+.text-buttons .button:hover {
+    color: black;
 }
 
 .upvote {
@@ -158,36 +186,4 @@ body{
 .downvote:focus {
     color: #F42272;
     outline: none;
-}
-
-.text-buttons {
-    border-top: 1px solid rgb(0 0 0 / 0.5);
-    border-left: 1px solid rgb(0 0 0 / 0.5);
-    border-right: 1px solid rgb(0 0 0 / 0.5);
-
-    border-top-left-radius:  7px;
-    border-top-right-radius:  7px;
-}
-
-.text-buttons .button {
-    background-color: white; /* Green */
-    border: none;
-    color: grey;
-    padding: 15px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-
-    border-radius: 7px;
-}
-  
-.text-buttons .button:hover {
-    color: black;
-}
-
-.main #answer-box {
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
 }
