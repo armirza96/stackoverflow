@@ -13,7 +13,7 @@
 
             <tr>
                 <td style="text-align: center">
-                    <button type="button" class="upvote" onclick="more(this)">▲</button>
+                    <button type="button" class="upvote" onclick="more_q(this)">▲</button>
                 </td>
 
                 <td rowspan="3" style="padding-top:15px">        
@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <td style="text-align: center">
-                    <button type="button" class="downvote" onclick="less(this)">▼</button>
+                    <button type="button" class="downvote" onclick="less_q(this)">▼</button>
                 </td>
             </tr>
         </table>
@@ -65,39 +65,16 @@
     </div>
 
     <div id="answers-container">
-        <table border="1" width="100%" id="answer-pane">
+        <table border="0" width="100%" id="answer-pane">
             <col style="width:5%"></col>
             <col style="width:90%"></col>
             <col style="width:5%"></col>
-
-            <!--<tr>
-                <td style="text-align: center">
-                    <button type="button" class="upvote">▲</button>
-                </td>
-
-                <td rowspan="3" class="answer-row">        
-                    <p class="answer"> test</p>
-                </td>
-
-                <td rowspan="3" class="best-answer">
-                    <button type="button" class="best-answer-button">★</button>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: center; font-size: 20px">1</td>
-            </tr>
-            <tr>
-                <td style="text-align: center">
-                    <button type="button" class="downvote">▼</button>
-                </td>
-            </tr>-->
         </table>
 
         <br>
 
         <script type="text/javascript"> 
             function Answer() {
-
                 if(document.getElementById('answer-box').value == "") {
                     alert("Answer Box empty! Please write an answer before submitting.");
                 }
@@ -229,6 +206,47 @@
                     document.getElementById("answer-pane").rows[t-2].cells[0].childNodes[0].disabled = false;
                 }
             }
+
+            function more_q(oButton) {
+                var t = oButton.parentNode.parentNode.rowIndex;
+                var q = document.getElementById("question-pane");
+
+                var r = q.rows[t+1].cells[0];
+
+                var val = +r.innerHTML; 
+                
+                r.innerHTML = val + 1;
+
+                q.rows[t+2].cells[0].childNodes[1].setAttribute("style", "color: #cccccc");
+
+                if(+r.innerHTML == 2) {
+                    oButton.setAttribute("style", "color: #FFC800");
+
+                    oButton.disabled = true;
+                    q.rows[t+2].cells[0].childNodes[1].disabled = false;
+                }
+            }
+
+            function less_q(oButton) {
+                var t = oButton.parentNode.parentNode.rowIndex;
+                var q = document.getElementById("question-pane");
+
+                var r = q.rows[t-1].cells[0];
+
+                var val = +r.innerHTML; //replace with getting the number from the database
+                r.innerHTML = val - 1;
+
+                q.rows[t-2].cells[0].childNodes[1].setAttribute("style", "color: #cccccc");
+
+                if(+r.innerHTML == 0) {
+
+                    oButton.setAttribute("style", "color: #F42272");
+
+                    oButton.disabled = true;
+                    q.rows[t-2].cells[0].childNodes[1].disabled = false;
+                }
+            }
+
         </script>
     </div>
 </div>
