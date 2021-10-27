@@ -7,8 +7,23 @@ $pageToHit = $_GET["PAGE"] ?? $_POST["PAGE"];
 $data = [];
 
 switch($pageToHit) {
+  case "user/signup":
+    require_once("user/add/add.php");
+  break;
+  case "user/signin":
+    require_once("user/authenticate/auth.php");
+  break;
   case "questions/get":
     require_once("questions/get/get.php");
+  break;
+  case "questions/add":
+    require_once("questions/add/add.php");
+  break;
+  case "answers/get":
+    require_once("answers/get/get.php");
+  break;
+  case "answers/add":
+    require_once("answers/add/add.php");
   break;
   default:
     $data = ["RESULT" => "2", "MESSAGE" => "Command not added to base.php"];

@@ -1,5 +1,6 @@
 SELECT
         EMAIL,
-        PASSWORD
+        PASSWORD,
+        ID
 FROM user
-WHERE EMAIL = ?
+WHERE email = ?

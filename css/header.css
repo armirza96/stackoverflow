@@ -1,12 +1,12 @@
   .topnav {
     overflow: hidden;
     background-color: #ffc800;
-    position: fixed; 
+    position: fixed;
     top: 0;
     width: 100%;
 
   }
-  
+
   .topnav a {
     float: left;
     display: block;
@@ -16,30 +16,30 @@
     text-decoration: none;
     font-size: 17px;
   }
-  
+
   .topnav a:hover {
     background-color: #FFD747;
     color: black;
   }
-  
+
   .topnav a.active {
     background-color: #FF8427;
     color: white;
   }
-  
+
   /*
 
   .topnav .search-container {
     float: right;
   }
-  
+
   .topnav input[type=text] {
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
     border: none;
   }
-  
+
   .topnav .search-container button {
     float: right;
     padding: 6px 10px;
@@ -51,14 +51,14 @@
     border: none;
     cursor: pointer;
   }
-  
+
   .topnav .search-container button:hover, .topnav a.active:hover {
     background: #FFAE70;
   }
-  
+
 
   @media screen and (max-width: 851px) {
-    
+
     .topnav .search-container {
       float: none;
     }
@@ -71,12 +71,12 @@
       padding: 14px;
     }
     .topnav input[type=text] {
-      border: 1px solid #ccc;  
+      border: 1px solid #ccc;
     }
   }
-  
+
   */
-  
+
   @media screen and (max-width: 600px) {
     .topnav a {
       float: none;
@@ -102,7 +102,7 @@
     }
 
     .topnav input[type=text] {
-      border: 1px solid #ccc;  
+      border: 1px solid #ccc;
     }
     */
   }

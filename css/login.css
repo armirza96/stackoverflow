@@ -66,16 +66,17 @@ input[type="password"] {
   font-size: 16px;
 }
 
-.loginbox input[type="submit"] {
+.loginbox input[type="submit"], button {
   border: none;
   outline: none;
-  height: 60 px;
+  height: 40px;
   background: hsl(206, 100%, 52%);
   color: hsl(0, 0%, 100%);
   font-size: 18px;
+  width: 100%;
 }
 
-.loginbox input[type="submit"]:hover {
+.loginbox input[type="submit"]:hover, button:hover {
   cursor: pointer;
   background: hsl(206, 95%, 37%);
   color: hsl(0, 0%, 100%);
