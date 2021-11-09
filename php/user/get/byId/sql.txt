@@ -1,0 +1,8 @@
+SELECT
+  ID,
+  userName,
+  email,
+  imageUrl
+FROM
+  User
+WHERE ID = ?

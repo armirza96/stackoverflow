@@ -1,0 +1,7 @@
+SELECT
+  userID,
+  askedDate,
+  text
+FROM
+  Answer
+WHERE userID = ?
