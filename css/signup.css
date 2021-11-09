@@ -1,6 +1,7 @@
 body{ 
     background-color: #f5f5f5;
     margin-top: 3%; 
+    padding-top: 60px;
 }
 
 .jumbotron{
@@ -11,6 +12,9 @@ body{
 @media(min-width: 1200px) {
     .container{
         width: 20%;
+    }
+    body {
+        padding-top: 0px;
     }
 }
 
