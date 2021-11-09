@@ -8,9 +8,20 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-
+  
+}
+#brand {
+  
+  color: white;
+ 
 }
 
+.topnav a:hover {
+  background-color: #FFD747;
+  color: black;
+}
+
+/*
 .topnav a {
   float: left;
   display: block;
@@ -21,17 +32,14 @@ body {
   font-size: 17px;
 }
 
-.topnav a:hover {
-  background-color: #FFD747;
-  color: black;
-}
+
 
 .topnav a.active {
   background-color: #FF8427;
   color: white;
 }
 
-/*
+
 
 .topnav .search-container {
   float: right;
