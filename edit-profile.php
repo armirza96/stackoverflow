@@ -1,4 +1,20 @@
-<?php include("header.php"); ?>
+<?php
+include("header.php");
+require_once("php/getter.php");
+
+//get user info
+/**
+Make sure the user id is in the url for the backend code to get the user
+The data returned is in an array of associative ArrayAccess
+ so arr[index]["column_name"] to access whatever object
+**/
+$id = $_GET["ID"] ?? -1;
+$user = getData("php/user/get/byId/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]])[0];
+$questions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
+$answers = getData("php/answers/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +34,7 @@
     <h1>User Profile</h1>
         <img src = "profilepic.png"></image>
         <label for ="file">Edit Image</label>
-        
+
         <input type = "file" name="" id="file" accept="image/*">
         <h3>Display Name:</h3>
         <h4>Your display name will be shown on your posts and comments</h4>
@@ -28,13 +44,13 @@
         <input type = "email" name="" placeholder="javascript,java,c#,php,....">
         <h3>Are you interested in job opportunities?</h3>
         <h4>We put developers first. This information is never displayed on your public profile</h4>
-        <input type ="text" name="" placeholder="Y/N"> 
+        <input type ="text" name="" placeholder="Y/N">
         <button style="float: left;margin:10px 0 0 18.2%;">Cancel</button>
         <button style="float: right;margin:10px 18.2% 0 0;">Update</button>
 
     </div>
 
     <br>
-    
+
 </body>
 </html>

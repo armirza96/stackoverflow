@@ -4,7 +4,7 @@
 **/
 
 function getData($path, $bindings = null) {
-  require_once 'connection.php';
+  require 'connection.php';
 
   $myfile = fopen($path, "r") or die("Unable to open file!");
 

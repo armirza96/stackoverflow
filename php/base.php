@@ -19,11 +19,17 @@ switch($pageToHit) {
   case "questions/add":
     require_once("questions/add/add.php");
   break;
+  case "questions/vote":
+    require_once("questions/vote/vote.php");
+  break;
   case "answers/get":
     require_once("answers/get/get.php");
   break;
   case "answers/add":
     require_once("answers/add/add.php");
+  break;
+  case "answers/vote":
+    require_once("answers/vote/vote.php");
   break;
   default:
     $data = ["RESULT" => "2", "MESSAGE" => "Command not added to base.php"];

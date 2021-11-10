@@ -3,12 +3,23 @@ $title = "Sign Up - Stack Overflow";
 
 include("header.php"); ?>
 
+<!-- <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head> -->
+
 <body>
 <link rel="stylesheet" href="css/signup.css">
-<br>
-<h1 style="text-align:center;">Sign Up Page</h1>
+  <div class="jumbotron text-center">
+      <h1>Create Your Account</h1>
+  </div>
 
-<div class="main" style="text-align:center">
+  <div class="d-flex justify-content-center">
+
   <div class="alert alert-success hide" role="alert" id="alert-success">
     This is a success alert—check it out!
   </div>
@@ -16,22 +27,30 @@ include("header.php"); ?>
     This is a danger alert—check it out!
   </div>
 
+    <div id="box-content">
     <form action="user/signup" id="signup">
-        <label for="username"> <b>Username</b></label><br>
-        <input type="text" id="username" name="username" required>
-        <br><br>
-
-        <label for="email"> <b>Email</b></label><br>
-        <input type="text" id="email" name="email" required>
-        <br><br>
-
-        <label for="password"> <b>Password</b></label><br>
-        <input type="password" id="password" name="password" required>
-
-        <br><br>
+      <div class="form-group">
+        <label for="username"><b>Username</b></label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="email"><b>Email</b></label>
+        <input type="text" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password"><b>Password</b></label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      <br>
+      <button id="button" onclick='submitForm("signup", "onDataReceived")'>Submit</button>
     </form>
-    <button onclick='submitForm("signup", "onDataReceived")' style="width: 100px;">Submit</button>
-</div>
+    </div>
+  </div>
+
+  <br>
+  <div class="d-flex justify-content-center">
+  <p>Already have an account? <a href="Login.php">Log in</a></p>
+  </div>
 
 <script src="shared/js/shared.js"></script>
 <script>
