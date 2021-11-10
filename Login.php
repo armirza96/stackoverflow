@@ -27,7 +27,8 @@ include("header.php"); ?>
       </form>
       <button onclick='submitForm("signin", "onDataReceived")'>Login</button>
       <br />
-      <a href="#">Don't have an account?</a>
+     
+        <a href="SignUp.php">Don't have an account?</a></a>
     </div>
 
 
