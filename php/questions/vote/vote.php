@@ -56,7 +56,7 @@ if(isset($_POST["questionID"]) && isset($_POST["voteDirection"])){
           $bindings["VALUES"] = array(
                                     $questionID,
                                     $accid,
-                                    $newVoteDirectionValue
+                                    b
                                   );
 
           $result = updateData("vote/update.txt", $bindings);
