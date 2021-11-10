@@ -3,6 +3,7 @@ SELECT
   userID,
   date,
   text,
-  voteValue
+  SUM(A.ID) As totalAnswers
 FROM
-  Question
+  Question Q
+LEFT JOIN Answer A on A.questionID = Q.ID

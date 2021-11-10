@@ -2,7 +2,9 @@ SELECT
   ID,
   userID,
   askedDate,
-  text
+  text,
+  SUM(A.ID) As totalAnswers
 FROM
   Question
+LEFT JOIN Answer A on A.questionID = Q.ID
 WHERE userID = ?
