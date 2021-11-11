@@ -20,7 +20,6 @@ include("header.php"); ?>
         <p>Email</p>
         <input type="text" name="email" />
         <p>Password</p>
-        <a href="#">Forgot Password?</a><br />
         <input type="password" name="password" />
         <!-- <input type="submit" name="" value="Login" /> -->
 
