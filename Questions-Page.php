@@ -18,7 +18,7 @@ include 'header.php';
                 <div id="Title-container">
                         <p id = "Title-name">Title</p>
                         <p id = "Title-description">Be specific and imagine you're asking a question to another person</p>
-                        
+
                         <textarea id="title-box" class="box" rows="1" cols="101" placeholder="e.g. is there an R function for finding the index of an element in a vector?"></textarea>
                 </div>
 
@@ -49,7 +49,7 @@ include 'header.php';
         </div>
 
 
-        <script type="text/javascript"> 
+        <script type="text/javascript">
             function post_question() {
                 if(document.getElementById('question-box').value == "" || document.getElementById('title-box').value == "") {
                         alert("One of the fields is empty! Please complete them before submitting.");
