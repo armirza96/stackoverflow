@@ -8,11 +8,12 @@ Make sure the user id is in the url for the backend code to get the user
 The data returned is in an array of associative ArrayAccess
  so arr[index]["column_name"] to access whatever object
 **/
-$id = $_GET["ID"] ?? -1;
-$user = getData("php/user/get/byId/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]])[0];
-$questions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
-$answers = getData("php/answers/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
-
+// $id = $_GET["ID"] ?? -1;
+// $user = getData("php/user/get/byId/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]])[0];
+// $questions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
+// $answers = getData("php/answers/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
+session_start();
+$_SESSION["USER_ID"] = 1;
 
 ?>
 
@@ -51,6 +52,23 @@ $answers = getData("php/answers/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "V
     </div>
 
     <br>
+    <div id="main-container" class="container">
+    <?php
+      $myArr = json_decode(file_get_contents("Questions.txt"));
 
+      //loop through questions
+      foreach($myArr as &$question) {
+         // print_r($question);
+          $userID = $question[3];
+
+          // check if questions user id is equal to current user id
+          if($userID == $_SESSION["USER_ID"]) {
+    ?>
+        <a class="question"><?=$question[0] ?></a>
+    <?php
+          }
+      }
+    ?>
+    </div>
 </body>
 </html>
