@@ -30,7 +30,7 @@
       $myArr = json_decode(file_get_contents("Questions.txt")); 
 
       $x = $_POST['send'];
-      $ar = array(0, 0, $x);
+      $ar = array($x, "question", "tags", 0, false);
       $myArr.array_push( $myArr, $ar);
 
       $myJSON = json_encode($myArr);
