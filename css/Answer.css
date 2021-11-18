@@ -38,6 +38,14 @@ body{
     padding-left: 5%;
 }
 
+.main #tags {
+    padding-top: 15px;
+    padding-bottom: 10px;
+    padding-right: 5%; 
+    padding-left: 5%;
+    margin-bottom: 15px;margin-left: 15px;
+}
+
 .main #question-explanation { 
     color: black;
     text-align: left;

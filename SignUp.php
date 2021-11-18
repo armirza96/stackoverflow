@@ -1,7 +1,9 @@
 <?php
 $title = "Sign Up - Stack Overflow";
 
-include("header.php"); ?>
+include("header.php"); 
+
+?>
 
 <body>
 <link rel="stylesheet" href="css/signup.css">

@@ -1,0 +1,1 @@
+[[["Hey there!",1,false],["What's good",1,true],["What's up?",1,false]],[["Hey",1,false],["Nothing much, just working on this homework.",2,false],["Hello",1,false],["Hello",1,true]],[["I wonder too.",2,true],["Hello",0,false]],[["like this:\r\nfor(int i = 0; i < array.length; i++) {\r\n   \/\/do something\r\n}",2,false]],[["I don't know",1,false]]]
