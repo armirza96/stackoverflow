@@ -20,14 +20,14 @@ include("header.php"); ?>
         <p>Email</p>
         <input type="text" name="email" />
         <p>Password</p>
-        <a href="#">Forgot Password?</a><br />
         <input type="password" name="password" />
         <!-- <input type="submit" name="" value="Login" /> -->
 
       </form>
       <button onclick='submitForm("signin", "onDataReceived")'>Login</button>
       <br />
-      <a href="#">Don't have an account?</a>
+     
+        <a href="SignUp.php">Don't have an account?</a></a>
     </div>
 
 

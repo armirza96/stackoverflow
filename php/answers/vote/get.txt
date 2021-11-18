@@ -1,0 +1,8 @@
+SELECT EXISTS (
+  SELECT
+    1
+  FROM
+    AnswerVote
+  WHERE answerID = ? AND
+        userID = ?
+) as RESULT

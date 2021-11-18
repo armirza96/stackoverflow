@@ -39,6 +39,7 @@ include 'header.php';
                         <button name="bu" class="btn btn-outline-primary btn-sm">Post Question</button>
                 </form>   
 
+
                 
                 <?php
                     if(isset($_POST['title-box']) && isset($_POST['question-box']))
@@ -52,6 +53,7 @@ include 'header.php';
                         $myArr = json_decode(file_get_contents("Questions.txt")); 
 
                         $ar = array($_POST['title-box'], $_POST['question-box'], "", 1, false);
+
 
                         if(isset($_POST['tags-box'])) {
                             $ar[2] = $_POST['tags-box'];

@@ -1,0 +1,4 @@
+UPDATE
+  QuestionVote
+SET directionOfVote = ?
+WHERE questionID = ? AND userID = ?
