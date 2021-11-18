@@ -17,51 +17,17 @@
 </head>
 
 <body>
-<!-- <div class="topnav">
-    <a class="active" href="main.php">Slack Overflow</a>
-    <!- <a href="#about">About</a> ->
+<div class="topnav">
+    <a class="active" href="index.php">Slack Overflow</a>
+
     <a href="Login.php">Log in</a>
     <a href="SignUp.php">Sign up</a>
     <a href="Questions-Page.php">Ask a Question</a>
     <a href="edit-profile.php">Check User Profile</a>
-    <a href="Answer.php">Answer page (Temp)</a>
 
-    <!- <form class="d-flex m-2 "> <input class="form-control mr-2" type="search" placeholder="Search..." aria-label="Search"> <button class="btn btn-outline-light" type="submit">Search</button> </form> ->
 
-</div> -->
-
-<div class="topnav">
-<nav class="navbar navbar-expand-lg navbar-light">
-    
-  <div class="container-fluid">
-    <a class="navbar-brand" href="main.php" style="color: white;">Stack Overflow</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="Login.php">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="SignUp.php">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="Questions-Page.php">Ask a Question</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="edit-profile.php">Check User Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="Answer.php">Answer page (Temp)</a>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-  </div>
-</nav>
-
-</body>
-</html>
+    <form class="d-flex m-2 "> 
+        <input class="form-control mr-2" type="search" placeholder="Search..." aria-label="Search"> 
+        <button class="btn btn-outline-light" type="submit">Search</button> 
+    </form> 
+</div>
