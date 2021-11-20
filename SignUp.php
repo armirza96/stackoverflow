@@ -1,7 +1,7 @@
 <?php
 $title = "Sign Up - Stack Overflow";
 
-include("header.php"); 
+include("header.php");
 
 ?>
 
@@ -44,8 +44,8 @@ include("header.php");
         <input type="password" class="form-control" id="password" name="password" required>
       </div>
       <br>
-      <button id="button" onclick='submitForm("signup", "onDataReceived")'>Submit</button>
     </form>
+    <button id="button" onclick='submitForm("signup", "onDataReceived")'>Submit</button>
     </div>
   </div>
 
