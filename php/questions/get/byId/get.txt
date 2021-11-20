@@ -1,10 +1,16 @@
 SELECT
-  ID,
-  userID,
-  date,
-  text,
-  SUM(A.ID) As totalAnswers
+  Q.ID,
+  Q.userID,
+  Q.askedDate,
+  Q.text,
+  COALESCE(SUM(A.ID),0) As totalAnswers
 FROM
   Question Q
   LEFT JOIN Answer A on A.questionID = Q.ID
-WHERE ID = ?
+WHERE Q.ID = ?
+GROUP BY
+  Q.ID,
+  Q.userID,
+  Q.askedDate,
+  Q.text,
+  A.ID

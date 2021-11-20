@@ -1,0 +1,6 @@
+SELECT
+  answerID
+FROM
+  Answer
+WHERE answerID = ? AND
+      isAccepted = 1

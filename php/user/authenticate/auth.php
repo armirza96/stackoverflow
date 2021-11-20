@@ -1,4 +1,10 @@
 <?php
+/**
+PHP needs: email, password
+email: email of users
+password: plaintext of the passowrd
+**/
+
 require_once("././getter.php");
 
 $data = [];
@@ -12,6 +18,8 @@ $bindings["BINDING_TYPES"] = "s";
 $bindings["VALUES"] = array($email);
 
 $user = getData("user/authenticate/sql.txt", $bindings)[0];
+
+session_start();
 
 if(!empty($user)){
     //$encrypted_pass = sha1($password);

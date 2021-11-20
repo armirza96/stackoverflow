@@ -1,10 +1,17 @@
 SELECT
-  ID,
-  userID,
-  date,
-  text,
-  voteValue,
-  isAccepted
+  A.ID,
+  A.userID,
+  A.askedDate,
+  A.text,
+  COUNT(IF(AV.directionOfVote="UP",1,0)) - COUNT(IF(AV.directionOfVote="DOWN",1,0)) voteValue,
+  A.isAccepted
 FROM
-  Answer
+  Answer A
+LEFT JOIN answerVote AV ON AV.answerID = A.ID
 WHERE questionID = ?
+GROUP BY
+  A.ID,
+  A.userID,
+  A.askedDate,
+  A.text,
+  A.isAccepted

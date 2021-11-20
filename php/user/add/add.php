@@ -1,6 +1,13 @@
 <?php
 require_once("././inserter.php");
 
+/**
+PHP needs: email, password, username
+email: email of users
+password: plaintext of the passowrd
+username: inputted username
+**/
+
 $data = [];
 if(isset($_POST["email"]) &&
       isset($_POST["password"]) &&

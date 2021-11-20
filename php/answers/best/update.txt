@@ -1,4 +1,4 @@
 UPDATE
   Answer
-SET is_accepted = ?
+SET isAccepted = ?
 WHERE answerID = ?

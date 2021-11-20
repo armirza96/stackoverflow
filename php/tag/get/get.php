@@ -5,4 +5,4 @@ Gets all the questions
 
 require_once("././getter.php");
 
-$data = getData("questions/get/get.txt");
+$data = getData("tag/get/get.txt");
