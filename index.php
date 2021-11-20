@@ -1,7 +1,91 @@
 <?php
 $title = "Stack Overflow - Where Developers Learn, Share, & Build Careers";
 
-include("header.php"); ?>
+include("header.php");
+// require_once("php/getter.php");
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- bootstrap 5 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserProfile</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <h2>All Questions</h2>
+
+        <!-- <div class="question_tab">
+            <button type="button" class="btn btn-outline-secondary btn-sm">Newest</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm">Active</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm">Unanswered</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm">Filter</button>
+
+        </div> -->
+        <!-- <a class="question" href="Answer.php">How do I program?</a>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
+        <a class="question" href="Answer.php">How do I program?</a>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
+        <a class="question" href="Answer.php">How do I program?</a>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
+        <a class="question" href="Answer.php">How do I program?</a>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
+        <a class="question" href="Answer.php">How do I program?</a>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla. -->
+        <br>
+        <br>
+
+        <a href="Questions-Page.php" <button type="button" class="btn btn-outline-primary btn-sm">Ask Question</button> </a>
+
+    </div>
+
+
+    <?php include "shared/footer.php" ?>
+
+    <script src="shared/js/shared.js"></script>
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            dataToSend = {PAGE: "questions/get"};
+            doAjaxCall(dataToSend, {callback: "onDataReceived", type: 'UI_UPDATE'}, 'GET');
+         });
+
+         function  onDataReceived(data) {
+              // data is an json array of objects
+              console.log(data);
+              $("#id").append("<p>This is an example</p>");
+
+              for (const element of data) {
+
+                $(".container").append(<a class='question' href='Answer.php?ID=${element.ID}'>${element.text}</a>)
+
+              }
+         }
+
+
+     </script>
+</body>
+
+</html>
+
+
+<!-- <?php
+// $title = "Stack Overflow - Where Developers Learn, Share, & Build Careers";
+
+// include("header.php"); ?>
 
 <body>
     <div id="main-container" class="container">
@@ -42,10 +126,10 @@ include("header.php"); ?>
         <br>
         <!--<button type="button" class="btn btn-outline-primary btn-sm">Ask Question</button>-->
 
-    </div>
+    <!-- </div>
 
 
 
 </body>
 
-</html>
+</html> -->

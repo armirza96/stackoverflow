@@ -19,6 +19,8 @@ $bindings["VALUES"] = array($email);
 
 $user = getData("user/authenticate/sql.txt", $bindings)[0];
 
+session_start();
+
 if(!empty($user)){
     //$encrypted_pass = sha1($password);
 
