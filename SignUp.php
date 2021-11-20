@@ -1,7 +1,9 @@
 <?php
 $title = "Sign Up - Stack Overflow";
 
-include("header.php"); ?>
+include("header.php"); 
+
+?>
 
 <!-- <head>
     <meta charset="utf-8">

@@ -1,4 +1,10 @@
 <?php
+/**
+PHP needs: email, password
+email: email of users
+password: plaintext of the passowrd
+**/
+
 require_once("././getter.php");
 
 $data = [];

@@ -2,7 +2,9 @@
 $data = [];
 
 /**
-PHP needs: questionID and voteDirection
+PHP needs: questionID and voteDirection as parameters
+questionID: the id of the question the user is voting on
+voteDirection: 0 is sent if the user is removing the vote, -1 if theyre downvoting, 1 if theyre upvoting
 **/
 
 if(!isset($_SESSION["ACCID"])) {
@@ -46,7 +48,7 @@ if(isset($_POST["questionID"]) && isset($_POST["voteDirection"])){
                                   $accid
                                 );
 
-        $result = getData("vote/get.txt", $bindings);
+        $result = getData("questions/vote/get.txt", $bindings);
 
         // vote already exists we need to update the current vote value
         if ($result["RESULT"] === 1) {
@@ -59,7 +61,7 @@ if(isset($_POST["questionID"]) && isset($_POST["voteDirection"])){
                                     b
                                   );
 
-          $result = updateData("vote/update.txt", $bindings);
+          $result = updateData("questions/vote/update.txt", $bindings);
 
           if ($result["RESULT"] === 1) {
             $data = array("RESULT"=> 1, "MESSAGE" => "Vote was updated");
@@ -75,7 +77,7 @@ if(isset($_POST["questionID"]) && isset($_POST["voteDirection"])){
                                     $newVoteDirectionValue
                                   );
 
-          $result = insertData("vote/insert.txt", $bindings);
+          $result = insertData("questions/vote/insert.txt", $bindings);
 
           if ($result["RESULT"] === 1) {
             $data = array("RESULT"=> 1, "MESSAGE" => "Vote was added");
