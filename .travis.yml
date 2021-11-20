@@ -1,4 +1,6 @@
 language: php
-php:
-  - 8.0
+language: CSS
+language: JavaScript
+language: HTML
+language: Hack
   
