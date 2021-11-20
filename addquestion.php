@@ -7,6 +7,12 @@ include 'header.php';
         <div class = "main">
             <div class = "question-page">
                 <div id="Title-container">
+                    <div class="alert alert-success hide" role="alert" id="alert-success">
+                        This is a success alert—check it out!
+                        </div>
+                    <div class="alert alert-danger hide" role="alert" id="alert-danger">
+                         This is a danger alert—check it out!
+                        </div>
                         <p id = "Title-name">Title</p>
                         <p id = "Title-description">Be specific and imagine you're asking a question to another person</p>
 
@@ -39,9 +45,50 @@ include 'header.php';
                         <button name="bu" class="btn btn-outline-primary btn-sm">Post Question</button>
                 </form>   
 
+        <form action="postQuestion" id="validQuestion">
 
+        <p>Title</p>
+        <input type="text" name="title" />
+        <p>Question</p>
+        <input type="text" name="question" />
+        <p>Tags</p>
+        <input type="text" name="tags" />
+        <select name="tags" id="tags"></select>
+        <!-- <input type="submit" name="" value="Login" /> -->
+
+      </form>
+
+      <button onclick='submitForm("validQuestion", "onDataReceived")'>Post Question</button>
+      <br />
+      <script src="shared/js/shared.js"></script>
+    <script>
+        $(document).ready(function () {
+            dataToSend = {PAGE: "tag/get"};
+            doAjaxCall(dataToSend, {callback: "onDataReceivedTag", type: 'UI_UPDATE'}, 'GET');
+         });
+
+      function  onDataReceived(data) {
+        if(data.RESULT == 1) {
+          showAlert("alert-success",data.MESSAGE + '. ' + 'Redirecting in 3 seconds');
+          redirectUser(`Answer.php?ID=${data.ID}`,3000);
+        } else {
+          showAlert("alert-danger", data.MESSAGE);
+        }
+      }
+      function  onDataReceivedTag(data) {
+              // data is an json array of objects
+              console.log(data);
+              $("#id").append("<p>This is an example</p>");
+
+              for (const element of data) {
+
+                $("#tags").append(`<option  value='${element.name}'>${element.name}</option>`)
+
+              }
+         }
+    </script>
                 
-                <?php
+                <?php /*
                     if(isset($_POST['title-box']) && isset($_POST['question-box']))
                     {
                         $AnsArr = json_decode(file_get_contents("Answers.txt")); 
@@ -78,7 +125,7 @@ include 'header.php';
 
                         <?php
                     }
-                ?>
+                */?>
                 </div>
             </div>
         </div>
