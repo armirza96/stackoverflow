@@ -5,8 +5,10 @@ require_once("php/getter.php");
 $id = $_GET["ID"];
 
 $question = getData("php/questions/get/byId/get.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]])[0];
-
+print_r ($question);
+echo $question["askedDate"];
 $answers = getData("php/answers/get/get.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
+print_r ($answers);
 ?>
 
 <body>
@@ -65,12 +67,15 @@ $answers = getData("php/answers/get/get.txt", ["BINDING_TYPES" => "i", "VALUES"=
             <button class="button">list</button>
         </div>
 
-        <form method="post" action="Answer.php">
-            <textarea name="ans" id="answer-box" rows="8" cols="50" placeholder="Type your answer here..."></textarea>
-        </form>
 
-        <button type="button" style="width:100%" onclick="Answer()">Submit</button>
+        <form action="answers/add" id="answer">
+        <textarea name="answer" id="answer-box" rows="8" cols="50" placeholder="Type your answer here..."></textarea>
+        <input type="hidden" name="questionID" value="<?=$question["ID"]?>"/>
+        </form>
+        <button onclick='submitForm("answer", "onDataReceived")'>Submit</button>
+      
     </div>
+    
 
     <div id="answers-container">
         <table border="0" width="100%" id="answer-pane">
@@ -81,7 +86,7 @@ $answers = getData("php/answers/get/get.txt", ["BINDING_TYPES" => "i", "VALUES"=
 
         <br>
 
-        <script type="text/javascript">
+        <script  type="text/javascript">/*
             function Answer() {
                 if(document.getElementById('answer-box').value == "") {
                     alert("Answer Box empty! Please write an answer before submitting.");
@@ -255,7 +260,19 @@ $answers = getData("php/answers/get/get.txt", ["BINDING_TYPES" => "i", "VALUES"=
                 }
             }
 
-        </script>
+        */</script>
+        <script src="shared/js/shared.js"></script>
+    <script>
+
+      function  onDataReceived(data) {
+        if(data.RESULT == 1) {
+          showAlert("alert-success",data.MESSAGE + '. ' + 'Redirecting in 3 seconds');
+          redirectUser(`Answer.php?ID=<?=$question["ID"]?>`,3000);
+        } else {
+          showAlert("alert-danger", data.MESSAGE);
+        }
+      }
+    </script>
     </div>
 </div>
 
