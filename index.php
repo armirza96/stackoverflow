@@ -26,14 +26,14 @@ include("header.php");
     <div class="container">
         <h2>All Questions</h2>
 
-        <div class="question_tab">
+        <!-- <div class="question_tab">
             <button type="button" class="btn btn-outline-secondary btn-sm">Newest</button>
             <button type="button" class="btn btn-outline-secondary btn-sm">Active</button>
             <button type="button" class="btn btn-outline-secondary btn-sm">Unanswered</button>
             <button type="button" class="btn btn-outline-secondary btn-sm">Filter</button>
 
-        </div>
-        <a class="question" href="Answer.php">How do I program?</a>
+        </div> -->
+        <!-- <a class="question" href="Answer.php">How do I program?</a>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
         <a class="question" href="Answer.php">How do I program?</a>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
@@ -42,11 +42,9 @@ include("header.php");
         <a class="question" href="Answer.php">How do I program?</a>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
         <a class="question" href="Answer.php">How do I program?</a>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla. -->
         <br>
         <br>
-
-
 
         <a href="Questions-Page.php" <button type="button" class="btn btn-outline-primary btn-sm">Ask Question</button> </a>
 
@@ -72,6 +70,8 @@ include("header.php");
 
               for (const element of data) {
 
+                $(".container").append(<a class='question' href='Answer.php?ID=${element.ID}'>${element.text}</a>)
+
               }
          }
 
@@ -83,9 +83,9 @@ include("header.php");
 
 
 <!-- <?php
-$title = "Stack Overflow - Where Developers Learn, Share, & Build Careers";
+// $title = "Stack Overflow - Where Developers Learn, Share, & Build Careers";
 
-include("header.php"); ?>
+// include("header.php"); ?>
 
 <body>
     <div id="main-container" class="container">
