@@ -1,5 +1,9 @@
 <?php
-
+/**
+PHP needs: questionID and answer (text) as parameters
+questionID: the id of the question the user is adding the answer to.
+answer: Text of the answer the user wrote
+**/
 
 $data = [];
 

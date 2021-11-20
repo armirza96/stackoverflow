@@ -2,7 +2,9 @@
 $data = [];
 
 /**
-PHP needs: questionID and voteDirection
+PHP needs: answerID, isAccepted
+isAccepted: 1 (for accepted) or 0 (for not/removal of best answer).
+HTTP method: POST
 **/
 
 if(!isset($_SESSION["ACCID"])) {
@@ -10,21 +12,21 @@ if(!isset($_SESSION["ACCID"])) {
   return;
 }
 
-if(isset($_POST["questionID"]) && isset($_POST["voteDirection"])){
+if(isset($_POST["answerID"]) && isset($_POST["isAccepted"])){
 
-      $newVoteDirection = $_POST["voteDirection"]; // -1 for downvote, 0 for removal of vote, 1 for upvote
-      $questionID = $_POST["questionID"];
+      $answerID = $_POST["answerID"];
+      $isAccepted = $_POST["isAccepted"];
       $accid = $_SESSION["ACCID"];
 
       $bindings = [];
-      if($newVoteDirection === 0) {
+      if($isAccepted === 0) {
 
         require "././updater.php";
 
         $bindings["BINDING_TYPES"] = "ii";
         $bindings["VALUES"] = array(
-                                  0,
-                                  $questionID
+                                  $isAccepted,
+                                  $answerID
                                 );
 
         $result = update("answers/best/update.txt", $bindings);
@@ -38,49 +40,54 @@ if(isset($_POST["questionID"]) && isset($_POST["voteDirection"])){
       } else {
         require "././getter.php";
 
-        $newVoteDirectionValue = $newVoteDirection === 1 ? "UP" : "DOWN";
-
         $bindings["BINDING_TYPES"] = "ii";
         $bindings["VALUES"] = array(
-                                  $questionID,
-                                  $accid
+                                  $isAccepted,
+                                  $answerID
                                 );
 
-        $result = getData("vote/get.txt", $bindings);
+        $result = getData("answers/best/get.txt", $bindings);
 
-        // vote already exists we need to update the current vote value
-        if ($result["RESULT"] === 1) {
+        // best answer already exists we need to remove the old best answer and add this one
+        if (!is_null($result["answerID"])) {
           require "././updater.php";
 
-          $bindings["BINDING_TYPES"] = "iis";
+          $bindings["BINDING_TYPES"] = "ii";
           $bindings["VALUES"] = array(
-                                    $questionID,
-                                    $accid,
-                                    b
-                                  );
+                                  0,
+                                  $result["answerID"]
+                                );
 
-          $result = updateData("vote/update.txt", $bindings);
+          $result = updateData("answers/best/update.txt", $bindings);
 
           if ($result["RESULT"] === 1) {
-            $data = array("RESULT"=> 1, "MESSAGE" => "Vote was updated");
+            $bindings["BINDING_TYPES"] = "ii";
+            $bindings["VALUES"] = array(
+                                    $isAccepted,
+                                    $answerID
+                                  );
+
+            $result = updateData("answers/best/update.txt", $bindings);
+
+            $data = array("RESULT"=> 1, "MESSAGE" => "Best answer was updated");
           } else {
-            $data = array("RESULT"=> 2, "MESSAGE" => "Vote was not updated.");
+            $data = array("RESULT"=> 2, "MESSAGE" => "Best answer was  not updated.");
           }
-        } else { // new vote we need to add it to the db
-          require "././inserter.php";
-          $bindings["BINDING_TYPES"] = "iis";
-          $bindings["VALUES"] = array(
-                                    $questionID,
-                                    $accid,
-                                    $newVoteDirectionValue
-                                  );
+        } else { // new best answer we need to update it in the db
+          require "././updater.php";
 
-          $result = insertData("vote/insert.txt", $bindings);
+          $bindings["BINDING_TYPES"] = "ii";
+          $bindings["VALUES"] = array(
+                                    $isAccepted,
+                                    $answerID
+                                );
+
+          $result = updateData("answers/best/update.txt", $bindings);
 
           if ($result["RESULT"] === 1) {
-            $data = array("RESULT"=> 1, "MESSAGE" => "Vote was added");
+            $data = array("RESULT"=> 1, "MESSAGE" => "Best answer was updated");
           } else {
-            $data = array("RESULT"=> 2, "MESSAGE" => "Vote was not added.");
+            $data = array("RESULT"=> 2, "MESSAGE" => "Best answer was  not updated.");
           }
         }
       }
