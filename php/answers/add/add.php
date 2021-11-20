@@ -7,6 +7,8 @@ answer: Text of the answer the user wrote
 
 $data = [];
 
+session_start();
+
 if(!isset($_SESSION["ACCID"])) {
   $data = array("RESULT"=> 2, "MESSAGE" => "Please login before answering a question.");
   return;
