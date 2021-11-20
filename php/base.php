@@ -34,6 +34,9 @@ switch($pageToHit) {
   case "answers/best":
     require_once("answers/best/best.php");
   break;
+  case "tag/get":
+    require_once("tag/get/get.php");
+  break;
   default:
     $data = ["RESULT" => "2", "MESSAGE" => "Command not added to base.php"];
   break;
