@@ -45,38 +45,36 @@ include("header.php");
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quod facere! Aliquam sequi maiores nihil. Fugit architecto facere molestiae sint explicabo! Temporibus vel suscipit eius animi ratione adipisci rem nulla.
         <br>
         <br>
-        
-    
-       
+
+
+
         <a href="Questions-Page.php" <button type="button" class="btn btn-outline-primary btn-sm">Ask Question</button> </a>
 
     </div>
-   
+
 
     <?php include "shared/footer.php" ?>
 
     <script src="shared/js/shared.js"></script>
 
-    <script type="text/javascript"> 
-    
-    $(document).ready(function () {
-        dataToSend = {PAGE: "questions/get"};
-        doAjaxCall(dataToSend, {callback: onDataReceived, type: 'UI_UPDATE'}, 'GET');
-     }); 
+    <script type="text/javascript">
 
-     function  onDataReceived(data) {
-          // data is an json array of objects
-          console.log(data);
-          $("#id").append("<p>This is an example</p>");
 
-          for (const element of data) {
- 
- 
-    
-   }
-          
-     }
-     
+        $(document).ready(function () {
+            dataToSend = {PAGE: "questions/get"};
+            doAjaxCall(dataToSend, {callback: "onDataReceived", type: 'UI_UPDATE'}, 'GET');
+         });
+
+         function  onDataReceived(data) {
+              // data is an json array of objects
+              console.log(data);
+              $("#id").append("<p>This is an example</p>");
+
+              for (const element of data) {
+
+              }
+         }
+
 
      </script>
 </body>
