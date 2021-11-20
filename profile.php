@@ -8,12 +8,14 @@ Make sure the user id is in the url for the backend code to get the user
 The data returned is in an array of associative ArrayAccess
  so arr[index]["column_name"] to access whatever object
 **/
-// $id = $_GET["ID"] ?? -1;
+
+session_start();
+$id = $_SESSION["ACCID"]
+
 // $user = getData("php/user/get/byId/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]])[0];
 // $questions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
 // $answers = getData("php/answers/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
-session_start();
-$_SESSION["USER_ID"] = 1;
+
 
 ?>
 
