@@ -1,6 +1,11 @@
 language: php
-language: CSS
-language: JavaScript
+php:
+-8.0
+-8.1
+
+language: css
+css:
+-3
 language: HTML
-language: Hack
-  
+HTML:
+-5
