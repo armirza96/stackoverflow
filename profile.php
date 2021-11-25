@@ -13,8 +13,8 @@ session_start();
 $id = $_SESSION["ACCID"]
 
 // $user = getData("php/user/get/byId/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]])[0];
-// $questions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
-// $answers = getData("php/answers/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
+// $userAskedQuestions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
+// $userAnsweredQuestions = getData("php/questions/get/byUserWhoHasAnswered/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
 
 
 ?>
