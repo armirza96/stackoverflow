@@ -1,5 +1,10 @@
 language: php
 php:
 -8.0
--8.1
 
+language: css
+css:
+-3
+language: HTML
+HTML:
+-5
