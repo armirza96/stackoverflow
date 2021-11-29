@@ -14,7 +14,7 @@ $id = $_SESSION["ACCID"];
 
  $user = getData("php/user/get/byId/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]])[0];
  $questions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
-// $answers = getData("php/answers/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
+ $answers = getData("php/answers/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
 
 
 ?>
@@ -58,6 +58,14 @@ $id = $_SESSION["ACCID"];
         <?php
         foreach($questions as &$question) {
             echo "<a class='question'>".$question['text']."</a>";
+        }
+        ?>
+    </div>
+
+    <div id="main-container" class="container">
+        <?php
+        foreach($answers as &$answer) {
+            echo "<a class='answer'>".$answer['text']."</a>";
         }
         ?>
     </div>
