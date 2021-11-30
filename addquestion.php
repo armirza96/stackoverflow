@@ -6,6 +6,7 @@ include 'header.php';
     <div class = "container">
         <div class = "main">
             <div class = "question-page">
+            <form action="postQuestion" id="validQuestion">
                 <div id="Title-container">
                     <div class="alert alert-success hide" role="alert" id="alert-success">
                         This is a success alert—check it out!
@@ -22,43 +23,19 @@ include 'header.php';
                 <div id="Question-box-container">
                         <p id = "Body-name">Body</p>
                         <p id = "body-description">Include all the information someone would need to answer your question</p>
-
-                        <!--<div class="text-buttons">
-                            <button class="button"><strong>B</strong></button>
-                            <button class="button"><em>I</em></button>
-                            <button class="button">IMG</button>
-                            <button class="button">list</button>
-                        </div>-->
-
                         <textarea name="question-box" id="question-box" class="question-box" rows="10" cols="101" form="send-form" required></textarea>                        
                 </div>
 
                 <div id="Tags-container">
                     <p id = "Tags-name">Tags</p>
-                    <p id = "tags-description">Add up to X tags to describe what your question is about</p>
-
-                    <textarea name="tags-box" class="box" rows="1" cols="101" placeholder="e.g. (python windows ruby)" form="send-form"></textarea>
+                    <input type="text" name="tags" />
+                    <select name="tags" id="tags"></select>
                 </div>
                 <div>
 
                 <form action="" method="post" id="send-form"> 
-                        <button name="bu" class="btn btn-outline-primary btn-sm">Post Question</button>
-                </form>   
-
-        <form action="postQuestion" id="validQuestion">
-
-        <p>Title</p>
-        <input type="text" name="title" />
-        <p>Question</p>
-        <input type="text" name="question" />
-        <p>Tags</p>
-        <input type="text" name="tags" />
-        <select name="tags" id="tags"></select>
-        <!-- <input type="submit" name="" value="Login" /> -->
-
-      </form>
-
-      <button onclick='submitForm("validQuestion", "onDataReceived")'>Post Question</button>
+                        <button name="bu" class="btn btn-outline-primary btn-sm" onclick='submitForm("validQuestion", "onDataReceived")'>Post Question</button>
+                </form>  
       <br />
       <script src="shared/js/shared.js"></script>
     <script>
@@ -87,45 +64,7 @@ include 'header.php';
               }
          }
     </script>
-                
-                <?php /*
-                    if(isset($_POST['title-box']) && isset($_POST['question-box']))
-                    {
-                        $AnsArr = json_decode(file_get_contents("Answers.txt")); 
-                        $arr = array();
-                        $AnsArr.array_push($AnsArr, $arr);
-                        $MJS = json_encode($AnsArr);
-                        file_put_contents("Answers.txt", $MJS);
-
-                        $myArr = json_decode(file_get_contents("Questions.txt")); 
-
-                        $ar = array($_POST['title-box'], $_POST['question-box'], "", 1, false);
-
-
-                        if(isset($_POST['tags-box'])) {
-                            $ar[2] = $_POST['tags-box'];
-                            unset($_POST['tags-box']);
-                        }
-
-                        $myArr.array_push( $myArr, $ar);
-
-                        $myJSON = json_encode($myArr);
-
-                        file_put_contents("Questions.txt", $myJSON);
-
-                        unset($_POST['title-box']);
-                        unset($_POST['question-box']);
-
-
-                        ?> 
-                            <script>
-                                alert("Question successfully sent!");
-                                window.location.replace("index.php");
-                            </script>
-
-                        <?php
-                    }
-                */?>
+ 
                 </div>
             </div>
         </div>

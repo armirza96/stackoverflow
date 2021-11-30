@@ -22,7 +22,7 @@
 
     <a href="Login.php">Log in</a>
     <a href="SignUp.php">Sign up</a>
-    <a href="Questions-Page.php">Ask a Question</a>
+    <a href="addquestion.php">Ask a Question</a>
     <a href="profile.php">Check User Profile</a>
 
 
