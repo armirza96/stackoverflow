@@ -11,7 +11,6 @@ The data returned is in an array of associative ArrayAccess
 
 session_start();
 $id = $_SESSION["ACCID"];
-
  $user = getData("php/user/get/byId/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]])[0];
  $questions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
  $answers = getData("php/answers/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
@@ -54,20 +53,21 @@ $id = $_SESSION["ACCID"];
     </div>
 
     <br>
-    <div id="main-container" class="container">
-        <?php
-        foreach($questions as &$question) {
-            echo "<a class='question'>".$question['text']."</a>";
-        }
-        ?>
-    </div>
+    <div id="main-container" class="container m-0">
+    <?php
+      foreach($questions as &$question) {
+          echo "<a class='question'>".$question['text']."</a>";
+      }
+    ?>
 
-    <div id="main-container" class="container">
-        <?php
-        foreach($answers as &$answer) {
-            echo "<a class='answer'>".$answer['text']."</a>";
-        }
-        ?>
+    </div>
+    <div  class="container m-0 mt-2">
+    <?php
+      foreach($answers as &$answer) {
+          echo "<a class='answer'>".$answer['text']."</a>";
+      }
+    ?>
+
     </div>
 </body>
 </html>

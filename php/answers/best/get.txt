@@ -1,6 +1,6 @@
 SELECT
-  answerID
+  ID
 FROM
   Answer
-WHERE answerID = ? AND
+WHERE questionID = ? AND
       isAccepted = 1

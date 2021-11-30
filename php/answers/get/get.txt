@@ -3,8 +3,14 @@ SELECT
   A.userID,
   A.askedDate,
   A.text,
-  COUNT(IF(AV.directionOfVote="UP",1,0)) - COUNT(IF(AV.directionOfVote="DOWN",1,0)) voteValue,
-  A.isAccepted
+  SUM(IF(AV.directionOfVote="UP",1,0)) - SUM(IF(AV.directionOfVote="DOWN",1,0)) voteValue,
+  A.isAccepted,
+  COALESCE(CASE
+    WHEN AV.userID = ? AND AV.directionOfVote = 'UP'
+	   THEN 1
+    WHEN AV.userID = ? AND AV.directionOfVote = 'DOWN'
+	   THEN -1
+  END, 0) as vote
 FROM
   Answer A
 LEFT JOIN answerVote AV ON AV.answerID = A.ID

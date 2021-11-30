@@ -8,12 +8,12 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  
+
 }
 #brand {
-  
+
   color: white;
- 
+
 }
 
 .topnav a:hover {
@@ -197,4 +197,9 @@ body {
 
 .hide {
   display: none;
+}
+
+.isAccepted {
+  background-color: green;
+  color: white;
 }

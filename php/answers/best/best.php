@@ -7,6 +7,8 @@ isAccepted: 1 (for accepted) or 0 (for not/removal of best answer).
 HTTP method: POST
 **/
 
+session_start();
+
 if(!isset($_SESSION["ACCID"])) {
   $data = array("RESULT"=> 2, "MESSAGE" => "Please login before changing the best answer.");
   return;
@@ -15,9 +17,10 @@ if(!isset($_SESSION["ACCID"])) {
 if(isset($_POST["answerID"]) && isset($_POST["isAccepted"])){
 
       $answerID = $_POST["answerID"];
+      $questionID = $_POST["questionID"];
       $isAccepted = $_POST["isAccepted"];
       $accid = $_SESSION["ACCID"];
-
+    //  echo $answerID;
       $bindings = [];
       if($isAccepted === 0) {
 
@@ -40,27 +43,34 @@ if(isset($_POST["answerID"]) && isset($_POST["isAccepted"])){
       } else {
         require "././getter.php";
 
-        $bindings["BINDING_TYPES"] = "ii";
+        $bindings["BINDING_TYPES"] = "i";
         $bindings["VALUES"] = array(
-                                  $isAccepted,
-                                  $answerID
+                                  $questionID
                                 );
 
         $result = getData("answers/best/get.txt", $bindings);
+      //  print_r($result);
+        if(is_array($result) && count($result) >= 1) {
 
+          $result = $result[0];
+
+        }
+        //
         // best answer already exists we need to remove the old best answer and add this one
-        if (!is_null($result["answerID"])) {
+      //  print_r($result);
+        if (array_key_exists("ID", $result)) {
           require "././updater.php";
 
           $bindings["BINDING_TYPES"] = "ii";
           $bindings["VALUES"] = array(
                                   0,
-                                  $result["answerID"]
+                                  $result["ID"]
                                 );
 
-          $result = updateData("answers/best/update.txt", $bindings);
+          $updateResult = updateData("answers/best/update.txt", $bindings);
+        //  print_r($updateResult);
+          if ($updateResult["RESULT"] == 1) {
 
-          if ($result["RESULT"] === 1) {
             $bindings["BINDING_TYPES"] = "ii";
             $bindings["VALUES"] = array(
                                     $isAccepted,
@@ -75,7 +85,7 @@ if(isset($_POST["answerID"]) && isset($_POST["isAccepted"])){
           }
         } else { // new best answer we need to update it in the db
           require "././updater.php";
-
+        //  echo 2;
           $bindings["BINDING_TYPES"] = "ii";
           $bindings["VALUES"] = array(
                                     $isAccepted,

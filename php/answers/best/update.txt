@@ -1,4 +1,4 @@
 UPDATE
   Answer
 SET isAccepted = ?
-WHERE answerID = ?
+WHERE ID = ?

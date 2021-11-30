@@ -1,11 +1,11 @@
-body{ 
+body{
     background-color: #f5f5f5;
     /*background-color: #F1FAEE;*/
-    
+
     margin-top: 50px;
 }
 
-.main { 
+.main {
     border-radius: 15px;
     padding-top: 15px;
     margin: auto;
@@ -16,7 +16,7 @@ body{
 }
 
 .main #question-container{
-    padding-bottom: 15px;    
+    padding-bottom: 15px;
     margin: auto;
     border-bottom: 2px solid rgb(0 0 0 / 0.2);
     width: 90%;
@@ -34,19 +34,19 @@ body{
 .main #question-explanation-container {
     padding-top: 15px;
     padding-bottom: 10px;
-    padding-right: 5%; 
+    padding-right: 5%;
     padding-left: 5%;
 }
 
 .main #tags {
     padding-top: 15px;
     padding-bottom: 10px;
-    padding-right: 5%; 
+    padding-right: 5%;
     padding-left: 5%;
     margin-bottom: 15px;margin-left: 15px;
 }
 
-.main #question-explanation { 
+.main #question-explanation {
     color: black;
     text-align: left;
     padding: 14px 16px;
@@ -56,7 +56,7 @@ body{
 
 #answers-container {
     padding-top: 15px;
-    padding-right: 5%; 
+    padding-right: 5%;
     padding-left: 5%;
 }
 
@@ -79,7 +79,7 @@ body{
 }
 
 #answer-box-container{
-    padding-bottom: 15px;    
+    padding-bottom: 15px;
     margin: auto;
     border-bottom: 2px solid rgb(0 0 0 / 0.2);
     width: 90%;
@@ -111,7 +111,7 @@ body{
 }
 
 .text-buttons .button {
-    background-color: white; 
+    background-color: white;
     border: none;
     color: grey;
     padding: 15px 15px;
@@ -123,7 +123,7 @@ body{
 
     border-radius: 7px;
 }
-  
+
 .text-buttons .button:hover {
     color: black;
 }
@@ -181,7 +181,7 @@ body{
     transition-duration: 0.2s;
 }
 
-.upvote:focus { 
+.upvote:focus {
     color: #FFC800;
     outline: none;
 }
@@ -194,4 +194,12 @@ body{
 .downvote:focus {
     color: #F42272;
     outline: none;
+}
+
+.upvote-voted {
+    color: #FFC800;
+}
+
+.downvote-voted {
+    color: #F42272;
 }

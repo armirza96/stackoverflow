@@ -3,14 +3,20 @@ SELECT
   Q.userID,
   Q.askedDate,
   Q.text,
-  COALESCE(SUM(A.ID),0) As totalAnswers
+  Q.title,
+  COALESCE(CASE
+    WHEN QV.userID = ? AND QV.directionOfVote = 'UP'
+	   THEN 1
+    WHEN QV.userID = ? AND QV.directionOfVote = 'DOWN'
+	   THEN -1
+  END, 0) as vote,
+  SUM(IF(QV.directionOfVote='UP',1,0)) - SUM(IF(QV.directionOfVote='DOWN',1,0)) voteValue
 FROM
   Question Q
-  LEFT JOIN Answer A on A.questionID = Q.ID
+LEFT JOIN QuestionVote QV on QV.questionID = Q.ID
 WHERE Q.ID = ?
 GROUP BY
   Q.ID,
   Q.userID,
   Q.askedDate,
-  Q.text,
-  A.ID
+  Q.text

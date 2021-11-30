@@ -70,7 +70,38 @@ include("header.php");
 
               for (const element of data) {
 
-                $(".container").append(<a class='question' href='Answer.php?ID=${element.ID}'>${element.text}</a>)
+                $(".container").append(`<a class='question' href='Answer.php?ID=${element.ID}'>
+                                            <div class='row'>
+                                                <div class='col-2'>
+                                                    <span class="w-100 d-block text-center">
+                                                        ${element.voteValue}
+                                                    </span>
+
+                                                    <span class="w-100 d-block text-center">
+                                                    votes
+                                                    </span>
+                                                    <div class="${element.isAccepted == 0 ? "isAccepted": ""}">
+
+                                                        <span class="w-100 d-block text-center">
+                                                            ${element.totalAnswers}
+                                                        </span>
+
+                                                        <span class="w-100 d-block text-center">
+                                                            answers
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class='col'>
+                                                    <p style="font-size: 1em">
+                                                        ${element.title}
+                                                    </p>
+                                                    <p style="font-size: 0.8em; color: #313638">
+                                                        ${element.text}
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </a>`);
 
               }
          }

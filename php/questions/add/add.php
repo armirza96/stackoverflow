@@ -3,6 +3,8 @@
 
 $data = [];
 
+session_start();
+
 if(!isset($_SESSION["ACCID"])) {
   $data = array("RESULT"=> 2, "MESSAGE" => "Please login before asking a question.");
   return;
