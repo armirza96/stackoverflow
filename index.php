@@ -88,7 +88,7 @@ include("header.php");
                                                     <span class="w-100 d-block text-center">
                                                     votes
                                                     </span>
-                                                    <div class="${element.isAccepted == 0 ? "isAccepted": ""}">
+                                                    <div class="${element.isAnswered == 1 ? "isAnswered": ""}">
 
                                                         <span class="w-100 d-block text-center">
                                                             ${element.totalAnswers}

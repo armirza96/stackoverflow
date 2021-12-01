@@ -165,7 +165,7 @@ body {
   display: none;
 }
 
-.isAccepted {
+.isAnswered {
   background-color: green;
   color: white;
 }

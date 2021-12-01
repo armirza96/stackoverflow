@@ -17,7 +17,7 @@ $sql = "SELECT
   Q.askedDate,
   Q.text,
   Q.title,
-  COALESCE(SUM(A.ID),0) As totalAnswers,
+  COALESCE(COUNT(A.ID),0) As totalAnswers,
   COALESCE(CASE
     WHEN QV.userID = ? AND QV.directionOfVote = 'UP'
 	   THEN 1
@@ -25,12 +25,12 @@ $sql = "SELECT
 	   THEN -1
   END, 0) as vote,
   SUM(IF(QV.directionOfVote='UP',1,0)) - SUM(IF(QV.directionOfVote='DOWN',1,0)) voteValue,
-  IF(A.isAccepted = 1, 1, 0) as isAnswered
+  A.isAccepted as isAnswered
 FROM
   Question Q
 LEFT JOIN Answer A on A.questionID = Q.ID
 LEFT JOIN QuestionVote QV on QV.questionID = Q.ID
-LEFT JOIN QuestionTag QT on QT.questionID = Q.ID
+JOIN QuestionTag QT on QT.questionID = Q.ID
 JOIN Tag T on T.ID = QT.tagID";
 
 
@@ -38,6 +38,7 @@ if(isset($_GET["SEARCH"])) {
   $search = $_GET["SEARCH"];
   $words = [];
   $tags = [];
+  $useisAnsweredColumn = false;
   //echo $search . "<br>";
 
   if(preg_match_all("/\[([A-Za-z0-9]+)\]|(isanswered:(yes|no))|\w+/i", $search, $matches))
@@ -50,7 +51,7 @@ if(isset($_GET["SEARCH"])) {
       if($word[0] == '[') {
         $tags[] = substr($word, 1, -1);
       } else if(stripos($word, "isanswered") !== false){
-        //echo 1;
+        $useisAnsweredColumn = true;
       }
       else
       {
@@ -63,7 +64,7 @@ if(isset($_GET["SEARCH"])) {
   // building dynamic query string for where clause
   // first we check if we need to have a where clause
   // then we check which parts of the where clause we need to build (tags or words)
-  if(count($tags) > 0 || count($words) > 0) {
+  if(count($tags) > 0 || count($words) > 0 || $useisAnsweredColumn) {
     $sql .= " WHERE ";
 
     if(count($tags) > 0) {
@@ -83,9 +84,22 @@ if(isset($_GET["SEARCH"])) {
         $searchTerms .= " {$word}";
       }
 
-      $sql .= "MATCH(q.text) AGAINST('{$searchTerms}' IN NATURAL LANGUAGE MODE)";
-
+      $sql .= "MATCH(q.title, q.text) AGAINST('{$searchTerms}' IN NATURAL LANGUAGE MODE)";
     }
+
+    if($useisAnsweredColumn) {
+      if(count($tags) > 0 || count($words) > 0) {
+        $sql .= " AND";
+      }
+      $pieces = explode(":", $word);
+
+      if(strcasecmp("yes",$pieces[1]) == 0) {
+        $sql .= " A.isAccepted = 1";
+      } else {
+        $sql .= " A.isAccepted = 0";
+      }
+    }
+
   }
 }
 
@@ -97,6 +111,6 @@ GROUP BY
   Q.text
 ";
 
-echo $sql;
+//echo $sql;
 
 $data = getDataBySQL($sql, $bindings);
