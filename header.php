@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,11 +14,26 @@
 
     <link rel="stylesheet" href="css/main.css">
 
-    <title><?=$title ?></title>
+    <title><?= $title ?></title>
 </head>
 
 <body>
-<div class="topnav">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning"> <a class="navbar-brand" href="index.php" data-abc="true">Slack Overflow</a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"> 
+         <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"> <a class="nav-link" href="Login.php" data-abc="true">Login <span class="sr-only">(current)</span></a> </li>
+                <li class="nav-item"> <a class="nav-link" href="SignUp.php" data-abc="true">SignUp</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="addquestion.php" data-abc="true">Ask a Question</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="profile.php" data-abc="true">Check User Profile</a> </li>
+            </ul>
+            <form onsubmit="event.preventDefault()" class="form-inline my-2 my-lg-0"> <input class="form-control mr-sm-2" type="text" placeholder="Search">
+             <button class="btn btn-secondary my-2 my-sm-0 bg-secondary" type="submit">Search</button> </form>
+        </div>
+    </nav>
+    <!-- <div class="topnav">
     <a class="active" href="index.php">Slack Overflow</a>
 
     <a href="Login.php">Log in</a>
@@ -30,4 +46,8 @@
         <input class="form-control mr-2" type="search" placeholder="Search..." aria-label="Search"> 
         <button class="btn btn-outline-light" type="submit">Search</button> 
     </form> 
-</div>
+</div> -->
+
+</body>
+
+</html>

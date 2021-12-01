@@ -46,7 +46,7 @@ include("header.php");
         <br>
         <br>
 
-        <a href="addquestion.php" <button type="button" class="btn btn-outline-primary btn-sm">Ask Question</button> </a>
+        <a href="addquestion.php" <button type="button" class="btn btn-outline-primary btn-sm" >Ask Question</button> </a>
 
     </div>
 
