@@ -11,15 +11,97 @@ $account_id = $_SESSION["ACCID"] ?? -1;
 $bindings["BINDING_TYPES"] = "ii";
 $bindings["VALUES"] = array($account_id, $account_id);
 
-if(isset($_GET[" SEARCH"])) {
+$sql = "SELECT
+  Q.ID,
+  Q.userID,
+  Q.askedDate,
+  Q.text,
+  Q.title,
+  COALESCE(SUM(A.ID),0) As totalAnswers,
+  COALESCE(CASE
+    WHEN QV.userID = ? AND QV.directionOfVote = 'UP'
+	   THEN 1
+    WHEN QV.userID = ? AND QV.directionOfVote = 'DOWN'
+	   THEN -1
+  END, 0) as vote,
+  SUM(IF(QV.directionOfVote='UP',1,0)) - SUM(IF(QV.directionOfVote='DOWN',1,0)) voteValue,
+  IF(A.isAccepted = 1, 1, 0) as isAnswered
+FROM
+  Question Q
+LEFT JOIN Answer A on A.questionID = Q.ID
+LEFT JOIN QuestionVote QV on QV.questionID = Q.ID
+LEFT JOIN QuestionTag QT on QT.questionID = Q.ID
+JOIN Tag T on T.ID = QT.tagID";
+
+
+if(isset($_GET["SEARCH"])) {
   $search = $_GET["SEARCH"];
+  $words = [];
+  $tags = [];
+  //echo $search . "<br>";
 
   if(preg_match_all("/\[([A-Za-z0-9]+)\]|(isanswered:(yes|no))|\w+/i", $search, $matches))
   {
-    print_r($matches);
+    //print_r($matches);
+    foreach($matches[0] as $word)
+    {
+    //  echo $word;
+
+      if($word[0] == '[') {
+        $tags[] = substr($word, 1, -1);
+      } else if(stripos($word, "isanswered") !== false){
+        //echo 1;
+      }
+      else
+      {
+        $words[] = $word;
+      }
+
+    }
+  }
+
+  if(count($tags) > 0 || count($words) > 0) {
+    $sql .= " WHERE";
+
+    if(count($tags) > 0) {
+      foreach($tags as $tag) {
+        $sql .= " T.name = '{$tag}' AND";
+      }
+      $sql = substr($sql, 0, -3);
+    }
+
+    if(count($words) > 0) {
+      if(count($tags) > 0) {
+        $sql .= " AND";
+      }
+
+      $sql .= " Q.TEXT LIKE '";
+
+      if(count($words) > 1) {
+        foreach($words as $word) {
+          $sql .= "%{$word}";
+        }
+
+        $sql .= "%";
+      } else {
+        $sql .= "%{$word}%";
+      }
+
+      $sql .= "'";
+    }
   }
 }
 
 
 
-$data = getData("questions/get/get.txt", $bindings);
+$sql .= "
+GROUP BY
+  Q.ID,
+  Q.userID,
+  Q.askedDate,
+  Q.text
+";
+
+echo $sql;
+
+$data = getDataBySQL($sql, $bindings);

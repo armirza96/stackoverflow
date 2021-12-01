@@ -1,0 +1,1 @@
+INSERT INTO QuestionTag values (?, ?)

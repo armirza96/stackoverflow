@@ -1,1 +1,1 @@
-INSERT INTO question (userID, text) VALUES (?,?)
+INSERT INTO question (userID, title, text) VALUES (?, ?, ?)
