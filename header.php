@@ -20,7 +20,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning"> <a class="navbar-brand" href="index.php" data-abc="true">Slack Overflow</a>
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"> 
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span> </button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
@@ -29,8 +29,10 @@
                 <li class="nav-item"> <a class="nav-link" href="addquestion.php" data-abc="true">Ask a Question</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="profile.php" data-abc="true">Check User Profile</a> </li>
             </ul>
-            <form onsubmit="event.preventDefault()" class="form-inline my-2 my-lg-0"> <input class="form-control mr-sm-2" type="text" placeholder="Search">
-             <button class="btn btn-secondary my-2 my-sm-0 bg-secondary" type="submit">Search</button> </form>
+            <form action="index.php" class="form-inline my-2 my-lg-0" >
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" name="SEARCH">
+             <button class="btn btn-secondary my-2 my-sm-0 bg-secondary" type="submit">Search</button>
+         </form>
         </div>
     </nav>
     <!-- <div class="topnav">
@@ -42,10 +44,10 @@
     <a href="profile.php">Check User Profile</a>
 
 
-    <form class="d-flex m-2 "> 
-        <input class="form-control mr-2" type="search" placeholder="Search..." aria-label="Search"> 
-        <button class="btn btn-outline-light" type="submit">Search</button> 
-    </form> 
+    <form class="d-flex m-2 ">
+        <input class="form-control mr-2" type="search" placeholder="Search..." aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+    </form>
 </div> -->
 
 </body>

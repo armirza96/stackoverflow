@@ -29,15 +29,17 @@ if(isset($_POST["question"])){
 
       $result = insertData("questions/add/sql.txt", $bindings);
 
-      if ($result["RESULT"] === 1) {
+      if ($result["RESULT"] == 1) {
         $questionID =  $result["LAST_INSERTED_ID"];
         $bindings = [];
+        
+        foreach($tags as $tagID) {
 
-        foreach($tags as $tag) {
           $bindings["BINDING_TYPES"] = "ii";
           $bindings["VALUES"] = array(
-                                    $tag,
                                     $questionID,
+                                    $tagID,
+
                                   );
 
           $result = insertData("questions/add/insertTag.txt", $bindings);

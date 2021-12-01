@@ -1,0 +1,8 @@
+SELECT
+  T.id,
+  T.name
+FROM
+  tag T
+JOIN QuestionTag QT on QT.tagID = T.ID
+JOIN Question Q on Q.ID = QT.questionID
+Where Q.ID = ?

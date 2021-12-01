@@ -3,7 +3,6 @@ $title = "Stack Overflow - Where Developers Learn, Share, & Build Careers";
 
 include("header.php");
 // require_once("php/getter.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +45,7 @@ include("header.php");
         <br>
         <br>
 
-        <a href="addquestion.php" <button type="button" class="btn btn-outline-primary btn-sm" >Ask Question</button> </a>
+        <a href="addquestion.php" <button type="button" class="btn btn-outline-primary btn-sm">Ask Question</button> </a>
 
     </div>
 
@@ -60,6 +59,15 @@ include("header.php");
 
         $(document).ready(function () {
             dataToSend = {PAGE: "questions/get"};
+            const queryString = window.location.search;
+            console.log(queryString);
+            const urlParams = new URLSearchParams(queryString);
+            const search = urlParams.get('SEARCH')
+
+            if(search) {
+                dataToSend["SEARCH"] = search;
+            }
+
             doAjaxCall(dataToSend, {callback: "onDataReceived", type: 'UI_UPDATE'}, 'GET');
          });
 

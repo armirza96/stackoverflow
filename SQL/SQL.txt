@@ -15,6 +15,7 @@ title VARCHAR(200),
 text VARCHAR(300),
 voteValue INT DEFAULT 0,
 FULLTEXT(text),
+FULLTEXT(title),
 FOREIGN KEY (userID) REFERENCES User(ID) ON DELETE CASCADE
 ) ;
 
@@ -52,3 +53,12 @@ CREATE TABLE Tag (
     isDisabled BIT DEFAULT 0,
     name VARCHAR(20)
 );
+
+create table QuestionTag (
+	questionID INT,
+    tagID INT,
+    FOREIGN KEY (questionID) REFERENCES Question(ID) ON DELETE CASCADE,
+    FOREIGN KEY (tagID) REFERENCES Tag(ID) ON DELETE CASCADE
+);
+
+insert into tag (name) values ('python'), ('php'), ('c++'), ('javascript'), ('sql')

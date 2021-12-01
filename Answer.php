@@ -12,9 +12,12 @@ $bindings["BINDING_TYPES"] = "iii";
 $bindings["VALUES"] = array($account_id, $account_id, $id);
 
 $question = getData("php/questions/get/byId/get.txt", $bindings)[0];
-
 $answers = getData("php/answers/get/get.txt", $bindings);
 
+$bindings["BINDING_TYPES"] = "i";
+$bindings["VALUES"] = array($id);
+
+$tags = getData("php/tag/get/byQuestion/sql.txt", $bindings);
 
 ?>
 
@@ -50,8 +53,16 @@ $answers = getData("php/answers/get/get.txt", $bindings);
 
     <div id="question-explanation-container">
         <p id="question-explanation">
-        <?=$question["text"] ?>
+            <?=$question["text"] ?>
         </p>
+    </div>
+    <div class="container m-0 d-block" style="width: 100%; height: 70px">
+        <span>Tags: </span>
+        <?php foreach($tags as &$tag) { ?>
+            <a class="btn btn-success mr-1" href="#" style="width: fit-content"><?=$tag["name"] ?></a>
+        <?php } ?>
+
+
     </div>
 </div>
 

@@ -60,8 +60,11 @@ if(isset($_GET["SEARCH"])) {
     }
   }
 
+  // building dynamic query string for where clause
+  // first we check if we need to have a where clause
+  // then we check which parts of the where clause we need to build (tags or words)
   if(count($tags) > 0 || count($words) > 0) {
-    $sql .= " WHERE";
+    $sql .= " WHERE ";
 
     if(count($tags) > 0) {
       foreach($tags as $tag) {
@@ -72,27 +75,19 @@ if(isset($_GET["SEARCH"])) {
 
     if(count($words) > 0) {
       if(count($tags) > 0) {
-        $sql .= " AND";
+        $sql .= " AND ";
       }
 
-      $sql .= " Q.TEXT LIKE '";
-
-      if(count($words) > 1) {
-        foreach($words as $word) {
-          $sql .= "%{$word}";
-        }
-
-        $sql .= "%";
-      } else {
-        $sql .= "%{$word}%";
+      $searchTerms = "";
+      foreach($words as $word) {
+        $searchTerms .= " {$word}";
       }
 
-      $sql .= "'";
+      $sql .= "MATCH(q.text) AGAINST('{$searchTerms}' IN NATURAL LANGUAGE MODE)";
+
     }
   }
 }
-
-
 
 $sql .= "
 GROUP BY
