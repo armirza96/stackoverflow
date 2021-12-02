@@ -11,27 +11,64 @@ $account_id = $_SESSION["ACCID"] ?? -1;
 $bindings["BINDING_TYPES"] = "ii";
 $bindings["VALUES"] = array($account_id, $account_id);
 
-$sql = "SELECT
+$sql = "
+WITH cte_accepted_answers (ID,questionIDOfAcceptedAnswers, isAccepted) AS
+(
+  SELECT ID,questionID, isAccepted
+  FROM Answer
+  Where IsAccepted = 1
+),
+cte_matched_text(questionIDofMatchedText) AS
+(
+SELECT
+	ID
+FROM
+  Question Q
+  WHERE ID = ID
+),
+cte_same_ids(ID) AS (
+SELECT
+	CAA.questionIDOfAcceptedAnswers
+FROM
+  cte_accepted_answers CAA
+	INNER JOIN cte_matched_text CTM on CTM.questionIDofMatchedText = CAA.questionIDOfAcceptedAnswers
+),
+cte_associated_tags(ID) AS
+(
+  SELECT ID
+  FROM Tag
+  Where name = name
+)
+
+SELECT
   Q.ID,
   Q.userID,
   Q.askedDate,
   Q.text,
   Q.title,
-  COALESCE(COUNT(A.ID),0) As totalAnswers,
-  COALESCE(CASE
+  COUNT(A.ID) As totalAnswers,
+  CASE
     WHEN QV.userID = ? AND QV.directionOfVote = 'UP'
 	   THEN 1
     WHEN QV.userID = ? AND QV.directionOfVote = 'DOWN'
 	   THEN -1
-  END, 0) as vote,
+	ELSE
+		0
+  END as vote,
   SUM(IF(QV.directionOfVote='UP',1,0)) - SUM(IF(QV.directionOfVote='DOWN',1,0)) voteValue,
-  A.isAccepted as isAnswered
+  IF(A.isAccepted=1,1,0) as isAnswered
 FROM
   Question Q
 LEFT JOIN Answer A on A.questionID = Q.ID
 LEFT JOIN QuestionVote QV on QV.questionID = Q.ID
-JOIN QuestionTag QT on QT.questionID = Q.ID
-JOIN Tag T on T.ID = QT.tagID";
+INNER JOIN (  SELECT Q.ID, title
+			  FROM question Q
+			   INNEr JOIN QuestionTag QT on QT.questionID = Q.ID
+				INNEr JOIN cte_associated_tags T on T.ID = Qt.tagID
+			   group by Q.ID, title
+			  having count(*) >= 0
+    ) Q2 on Q2.ID = Q.ID
+WHERE Q.ID IN (SELECT ID FROM cte_same_ids)";
 
 
 if(isset($_GET["SEARCH"])) {
@@ -39,11 +76,12 @@ if(isset($_GET["SEARCH"])) {
   $words = [];
   $tags = [];
   $useisAnsweredColumn = false;
+  $isAnsweredUsed;
   //echo $search . "<br>";
 
-  if(preg_match_all("/\[([A-Za-z0-9]+)\]|(isanswered:(yes|no))|\w+/i", $search, $matches))
+  if(preg_match_all("/\[([A-Za-z0-9!@#\$%\^\&*\)\(+=._-]+)\]|(isanswered:(yes|no))|\w+/i", $search, $matches))
   {
-    //print_r($matches);
+    //print_r($matches[0]);
     foreach($matches[0] as $word)
     {
     //  echo $word;
@@ -51,7 +89,8 @@ if(isset($_GET["SEARCH"])) {
       if($word[0] == '[') {
         $tags[] = substr($word, 1, -1);
       } else if(stripos($word, "isanswered") !== false){
-        $useisAnsweredColumn = true;
+        //$useisAnsweredColumn = true;
+        $isAnsweredUsed = $word;
       }
       else
       {
@@ -65,41 +104,42 @@ if(isset($_GET["SEARCH"])) {
   // first we check if we need to have a where clause
   // then we check which parts of the where clause we need to build (tags or words)
   if(count($tags) > 0 || count($words) > 0 || $useisAnsweredColumn) {
-    $sql .= " WHERE ";
+
+    $predicate = "";
+    $havingCount = "";
 
     if(count($tags) > 0) {
+      $predicate = "name IN (";
       foreach($tags as $tag) {
-        $sql .= " T.name = '{$tag}' AND";
+        $predicate .= "'{$tag}',";
       }
-      $sql = substr($sql, 0, -3);
+
+      $predicate = substr($predicate, 0, -1);
+      $predicate .= ")";
+      $havingCount = ">= (SELECT count(ID) FROM cte_associated_tags)";
+
+      $sql = str_replace("name = name", $predicate, $sql);
+      $sql = str_replace(">= 0", $havingCount, $sql);
     }
 
     if(count($words) > 0) {
-      if(count($tags) > 0) {
-        $sql .= " AND ";
-      }
-
       $searchTerms = "";
       foreach($words as $word) {
         $searchTerms .= " {$word}";
       }
 
-      $sql .= "MATCH(q.title, q.text) AGAINST('{$searchTerms}' IN NATURAL LANGUAGE MODE)";
+      $sql = str_replace("ID = ID", "MATCH(q.title, q.text) AGAINST('{$searchTerms}' IN NATURAL LANGUAGE MODE)", $sql);
+      //$sql .= ;
     }
+  //  echo $isAnsweredUsed;
 
-    if($useisAnsweredColumn) {
-      if(count($tags) > 0 || count($words) > 0) {
-        $sql .= " AND";
-      }
-      $pieces = explode(":", $word);
-
+    if(!empty($isAnsweredUsed)) {
+      $pieces = explode(":", $isAnsweredUsed);
+      //echo 1;
       if(strcasecmp("yes",$pieces[1]) == 0) {
-        $sql .= " A.isAccepted = 1";
-      } else {
-        $sql .= " A.isAccepted = 0";
+          $sql = str_replace("IsAccepted = 0", "IsAccepted = 1", $sql);
       }
     }
-
   }
 }
 
@@ -108,8 +148,11 @@ GROUP BY
   Q.ID,
   Q.userID,
   Q.askedDate,
-  Q.text
+  Q.text,
+  Qv.directionOfVote,
+  A.isAccepted
 ";
+
 
 //echo $sql;
 
