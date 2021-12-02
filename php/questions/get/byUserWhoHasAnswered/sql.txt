@@ -2,9 +2,14 @@ SELECT
   Q.ID,
   Q.userID,
   Q.askedDate,
-  Q.text,
-  SUM(A.ID) As totalAnswers
+  Q.title,
+  COUNT(A.ID) As totalAnswers
 FROM
   Question Q
-JOIN Answer A on A.questionID = Q.ID
+LEFT JOIN Answer A on A.questionID = Q.ID
 WHERE A.userID = ?
+GROUP BY
+  Q.ID,
+  Q.userID,
+  Q.askedDate,
+  Q.title

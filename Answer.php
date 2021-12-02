@@ -1,4 +1,6 @@
-<?php include("header.php");
+<?php
+$title = "Answer";
+ include("header.php");
 
 require_once("php/getter.php");
 

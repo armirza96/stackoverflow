@@ -27,11 +27,11 @@ FROM
   WHERE ID = ID
 ),
 cte_same_ids(ID) AS (
-SELECT
-	CAA.questionIDOfAcceptedAnswers
+  SELECT
+CTM.questionIDofMatchedText
 FROM
-  cte_accepted_answers CAA
-	INNER JOIN cte_matched_text CTM on CTM.questionIDofMatchedText = CAA.questionIDOfAcceptedAnswers
+ cte_matched_text CTM
+ INNER JOIN cte_accepted_answers CAA on CTM.questionIDofMatchedText = CAA.questionIDOfAcceptedAnswers
 ),
 cte_associated_tags(ID) AS
 (
@@ -89,6 +89,7 @@ if(isset($_GET["SEARCH"])) {
       if($word[0] == '[') {
         $tags[] = substr($word, 1, -1);
       } else if(stripos($word, "isanswered") !== false){
+        //echo "hello1 " . $word;
         //$useisAnsweredColumn = true;
         $isAnsweredUsed = $word;
       }
@@ -103,7 +104,7 @@ if(isset($_GET["SEARCH"])) {
   // building dynamic query string for where clause
   // first we check if we need to have a where clause
   // then we check which parts of the where clause we need to build (tags or words)
-  if(count($tags) > 0 || count($words) > 0 || $useisAnsweredColumn) {
+  if(count($tags) > 0 || count($words) > 0 || !empty($isAnsweredUsed)) {
 
     $predicate = "";
     $havingCount = "";
@@ -131,16 +132,35 @@ if(isset($_GET["SEARCH"])) {
       $sql = str_replace("ID = ID", "MATCH(q.title, q.text) AGAINST('{$searchTerms}' IN NATURAL LANGUAGE MODE)", $sql);
       //$sql .= ;
     }
-  //  echo $isAnsweredUsed;
+//  echo "135" . $isAnsweredUsed;
 
     if(!empty($isAnsweredUsed)) {
+
       $pieces = explode(":", $isAnsweredUsed);
       //echo 1;
+      // if(strcasecmp("yes",$pieces[1]) == 0) {
+      //     // $sql = str_replace("IsAccepted = 0", "IsAccepted = 1", $sql);
+      //     $sql = str_replace("questionIDofMatchedText = questionIDofMatchedText", "CTM.questionIDofMatchedText in (SELECT CAA.questionIDOfAcceptedAnswers FROM cte_accepted_answers CAA)", $sql);
+      // } else {
+      //   $sql = str_replace("questionIDofMatchedText = questionIDofMatchedText", "CTM.questionIDofMatchedText NOT in (SELECT CAA.questionIDOfAcceptedAnswers FROM cte_accepted_answers CAA)", $sql);
+      // }
+
       if(strcasecmp("yes",$pieces[1]) == 0) {
-          $sql = str_replace("IsAccepted = 0", "IsAccepted = 1", $sql);
+
+          // $sql = str_replace("IsAccepted = 0", "IsAccepted = 1", $sql);
+          $sql = str_replace("WHERE Q.ID IN (SELECT ID FROM cte_same_ids)", "WHERE Q.ID IN (SELECT ID FROM cte_same_ids)", $sql);
+      } else {
+        $sql = str_replace("IsAccepted = 1", "IsAccepted = 0", $sql);
+        $sql = str_replace("WHERE Q.ID IN (SELECT ID FROM cte_same_ids)", "WHERE Q.ID IN (SELECT ID FROM cte_same_ids)", $sql);
       }
+    } else {
+
+
+      $sql = str_replace("INNER JOIN cte_accepted_answers CAA on CTM.questionIDofMatchedText = CAA.questionIDOfAcceptedAnswers", " ", $sql);
     }
   }
+}else {
+  $sql = str_replace("WHERE Q.ID IN (SELECT ID FROM cte_same_ids)", " ", $sql);
 }
 
 $sql .= "
@@ -154,6 +174,6 @@ GROUP BY
 ";
 
 
-//echo $sql;
+// echo $sql;
 
 $data = getDataBySQL($sql, $bindings);

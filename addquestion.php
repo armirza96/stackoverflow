@@ -1,4 +1,5 @@
 <?php
+$title = "Add a question";
 include 'header.php';
 ?>
 <link rel="stylesheet" href="Questions-Page.css" type="text/css">

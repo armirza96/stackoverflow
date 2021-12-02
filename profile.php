@@ -1,4 +1,5 @@
 <?php
+$title = "Profile";
 include("header.php");
 require_once("php/getter.php");
 
@@ -40,7 +41,7 @@ $id = $_SESSION["ACCID"];
         <input type = "file" name="" id="file" accept="image/*">
         <h3>Display Name:</h3>
         <h4>Your display name will be shown on your posts and comments</h4>
-        <input type="text" name="" placeholder="Name">
+        <input type="text" name="" placeholder="Name" value="<?=$user["userName"] ?>">
         <h3>Technology tags that interest you</h3>
         <h4>Picking tags will help us show you much more relevant questions and answers</h4>
         <input type = "email" name="" placeholder="javascript,java,c#,php,....">
@@ -54,17 +55,19 @@ $id = $_SESSION["ACCID"];
 
     <br>
     <div id="main-container" class="container m-0">
+        <h3>Questions the user has asked</h3>
     <?php
       foreach($questions as &$question) {
-          echo "<a class='question'>".$question['text']."</a>";
+          echo "<a class='question' href='Answer.php?ID={$question['ID']}'>".$question['title']."</a>";
       }
     ?>
 
     </div>
     <div  class="container m-0 mt-2">
+        <h3>Questions the user has answered</h3>
     <?php
       foreach($answers as &$answer) {
-          echo "<a class='answer'>".$answer['text']."</a>";
+          echo "<a class='question' href='Answer.php?ID={$question['ID']}'>".$answer['title']."</a>";
       }
     ?>
 

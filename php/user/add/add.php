@@ -38,6 +38,7 @@ if(isset($_POST["email"]) &&
 
 
       if ($result["RESULT"] === 1) {
+         session_start();
         $_SESSION["ACCID"] = $result["LAST_INSERTED_ID"];
         $data = array("RESULT"=> 1, "MESSAGE" => "Account was successfully created!", "ID" => $result["LAST_INSERTED_ID"]);
       } else {
