@@ -4,6 +4,7 @@ declare(strict_types=1);
 session_start();
 
 $root = dirname(__FILE__,2);
+require($root . '/php/connection.php');
 require($root . '/php/inserter.php');
 require($root . '/php/getter.php'); 
 
