@@ -4,9 +4,8 @@ declare(strict_types=1);
 session_start();
 
 $root = dirname(__FILE__,2);
-require($root . '/php/connection.php');
 require($root . '/php/inserter.php');
-require($root . '/php/getter.php');
+require($root . '/php/getter.php'); 
 
 class StackoverflowTest extends \PHPUnit\Framework\TestCase {
     public function testConnection(){
@@ -22,29 +21,15 @@ class StackoverflowTest extends \PHPUnit\Framework\TestCase {
     }
 
     public function testCreateUser(){
-        //Check if account can be created
-        $conn = new mysqli("localhost", "root", "", "test", 3306);
-
+        //Verify if an account can be created
         $users = getData("php/user/get/sql.txt");
-        $lastUser = end($users);        //get the array of the last user that was added
+        $lastUser = end($users);                         //get the array of the last user that was added
         
-        if($lastUser == false){         //if the user database is empty, then create a new user 
-            $bindings = ["BINDING_TYPES" => "ssss", "VALUES"=>['TestUser','TestEmail','TestPass','']];
-            $myfile = fopen("php/user/add/sql.txt", "r") or die("Unable to open file!");
-            $sql = fread($myfile,filesize("php/user/add/sql.txt"));
-            fclose($myfile);
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param($bindings["BINDING_TYPES"], ...$bindings["VALUES"]);
-            $result = $stmt->execute(); 
-            $conn->close();    
-            if($result){
-                $this->assertTrue(true);
-            }
-            else{
-                $this->assertTrue(false);
-            }
+        if($lastUser == false){                          //if the user database is empty, then create a new user 
+            $result = insertData("php/user/add/sql.txt", ["BINDING_TYPES" => "ssss", "VALUES"=>['TestUser','TestEmail','TestPass','']]);
+            $this->assertEquals(1,$result["RESULT"]);
         }
-        elseif($lastUser['userName'] == "TestUser"){    //if there is another user by the same name, it means the user was successfully created
+        elseif($lastUser['userName'] == "TestUser"){     //if there is another user by the same name, it means the user was successfully created
             $this->assertTrue(true);
         }
         else{
@@ -54,7 +39,6 @@ class StackoverflowTest extends \PHPUnit\Framework\TestCase {
     
     public function testUserCredentials(){
         //Verify if the correct username is received 
-        require_once('./php/getter.php');
         $Name = getData("php/user/get/sql.txt");
         $lastName = end($Name);
         $this->assertEquals("TestUser",$lastName['userName']);
@@ -78,38 +62,32 @@ class StackoverflowTest extends \PHPUnit\Framework\TestCase {
     
     public function testAddQuestion(){
         //Verify if a question can be added 
-        $conn = new mysqli("localhost", "root", "", "test", 3306);
-        
-        $questions = getData("php/questions/get/get.txt");
-        $lastQuestion = end($questions);        //get the array of the last question that was added
+        $users = getData("php/user/get/sql.txt");
+        $lastUser = end($users);                        //get the array of the last user that was added
+        $id = $lastUser['ID'];
 
-        if($lastQuestion == false){             //if the question database is empty, then create a new question
-            $bindings = ["BINDING_TYPES" => "is", "VALUES"=>[$_SESSION["ACCID"], 'TestQuestion']];
-            $myfile = fopen("php/questions/add/sql.txt", "r") or die("Unable to open file!");
-            $sql = fread($myfile,filesize("php/questions/add/sql.txt"));
-            fclose($myfile);
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param($bindings["BINDING_TYPES"], ...$bindings["VALUES"]);
-            $result = $stmt->execute(); 
-            $conn->close();    
-            if($result){
-                $this->assertTrue(true);
-            }
-            else{
-                $this->assertTrue(false);
-            }
+        $questions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
+        $lastQuestion = end($questions)['text'];        //get the last question that was added
+        
+        if(!isset($lastQuestion)){                      //if the question database is empty, then create a new question
+            $result = insertData("php/questions/add/sql.txt", ["BINDING_TYPES" => "iss", "VALUES"=>[$_SESSION["ACCID"],'Title', 'TestQuestion']]);
+            $this->assertEquals(1,$result["RESULT"]);
         }
-        elseif($lastQuestion['text'] == "TestQuestion"){    //if the same question is present in the database, it means that the question was successfully added
+        elseif($lastQuestion == "TestQuestion"){        //if the same question is present in the database, it means that the question was successfully added
             $this->assertTrue(true);
         }
         else{
             $this->assertTrue(false);
-        }
+        } 
     }
 
     public function testGetQuestion(){
         //Verify if the question can be obtained from the database
-        $questions = getData("php/questions/get/get.txt");
+        $users = getData("php/user/get/sql.txt");
+        $lastUser = end($users);                        //get the array of the last user that was added
+        $id = $lastUser['ID'];                          //get the id of that user to then obtain the question asked by that user
+        
+        $questions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
         $lastQuestion = end($questions);
 
         if($lastQuestion == false){
@@ -122,24 +100,19 @@ class StackoverflowTest extends \PHPUnit\Framework\TestCase {
  
     public function testAddAnswer(){
         //Verify if an answer can be submitted to a question
-        $conn = new mysqli("localhost", "root", "", "test", 3306);
+        $users = getData("php/user/get/sql.txt");
+        $lastUser = end($users);                        //get the array of the last user that was added
+        $id = $lastUser['ID'];
         
-        $questions = getData("php/questions/get/get.txt");
+        $questions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
         $lastQuestionID = end($questions)['ID'];
-        $answer = getData("php/answers/get/get.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$lastQuestionID]]);
-        $lastAnswer = end($answer);         //get the array of the last answer that was added for the 'test question'
+       
+        $answer = getData("php/answers/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
+        $lastAnswer = end($answer);                     //get the array of the last answer that was added for the 'test question'
 
-        if($lastAnswer == false){           //if the answer database is empty, then create a new answer to the 'test question'
-            $bindings = ["BINDING_TYPES" => "iis", "VALUES"=>[$lastQuestionID, $_SESSION["ACCID"], 'TestAnswer']];
-            $path = "php/answers/add/sql.txt";
-            $myfile = fopen($path, "r") or die("Unable to open file!");
-            $sql = fread($myfile,filesize($path));
-            fclose($myfile);
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param($bindings["BINDING_TYPES"], ...$bindings["VALUES"]);
-            $result = $stmt->execute();
-            $conn->close(); 
-            $this->assertEquals(true,$result);
+        if($lastAnswer == false){                       //if the answer database is empty, then create a new answer to the 'test question'
+            $result = insertData("php/answers/add/sql.txt", ["BINDING_TYPES" => "iis", "VALUES"=>[$lastQuestionID, $_SESSION["ACCID"], 'TestAnswer']]);
+            $this->assertEquals(1,$result["RESULT"]);
         }
         elseif($lastAnswer['text'] == "TestAnswer"){    //if the same answer is present in the database, it means that the answer was successfully added
             $this->assertTrue(true);
@@ -151,9 +124,11 @@ class StackoverflowTest extends \PHPUnit\Framework\TestCase {
     
     public function testGetAnswer(){
         //Verify if the answer can be obtained from the database
-        $questions = getData("php/questions/get/get.txt");
-        $lastQuestionID = end($questions)['ID'];
-        $answer = getData("php/answers/get/get.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$lastQuestionID]]);
+        $users = getData("php/user/get/sql.txt");
+        $lastUser = end($users);                        //get the array of the last user that was added
+        $id = $lastUser['ID'];
+
+        $answer = getData("php/answers/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
         $lastAnswer = end($answer);
 
         if($lastAnswer == false){
@@ -166,26 +141,20 @@ class StackoverflowTest extends \PHPUnit\Framework\TestCase {
 
     public function testAddVote(){
         //Verify if a vote can be added to a question
-        $conn = new mysqli("localhost", "root", "", "test", 3306);
+        $users = getData("php/user/get/sql.txt");
+        $lastUser = end($users);                        //get the array of the last user that was added
+        $id = $lastUser['ID'];
 
-        $questions = getData("php/questions/get/get.txt");
+        $questions = getData("php/questions/get/byUser/sql.txt", ["BINDING_TYPES" => "i", "VALUES"=>[$id]]);
         $lastQuestionID = end($questions)['ID'];
         $vote = getData("php/questions/vote/get.txt", ["BINDING_TYPES" => "ii", "VALUES"=>[$lastQuestionID, $_SESSION["ACCID"]]]);
-        $lastVote = end($vote);             //get the array of the last vote that was added for the 'test question'
+        $lastVote = end($vote);                         //get the array of the last vote that was added for the 'test question'
 
-        if($lastVote["RESULT"] == 0){       //if the vote database is empty, then create a new vote to the 'test question'
-            $bindings = ["BINDING_TYPES" => "iis", "VALUES"=>[$lastQuestionID, $_SESSION["ACCID"], '1']];
-            $path = "php/questions/vote/insert.txt";
-            $myfile = fopen($path, "r") or die("Unable to open file!");
-            $sql = fread($myfile,filesize($path));
-            fclose($myfile);
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param($bindings["BINDING_TYPES"], ...$bindings["VALUES"]);
-            $result = $stmt->execute();
-            $conn->close();
-            $this->assertEquals(true,$result);
+        if($lastVote["RESULT"] == 0){                   //if the vote database is empty, then create a new vote to the 'test question'
+            $result = insertData("php/questions/vote/insert.txt", ["BINDING_TYPES" => "iis", "VALUES"=>[$lastQuestionID, $_SESSION["ACCID"], '1']]);
+            $this->assertEquals(1,$result["RESULT"]);
         }
-        elseif($lastVote["RESULT"] == 1){       //if the a vote is alreade present in the database, it means that the vote was successfully added
+        elseif($lastVote["RESULT"] == 1){               //if the a vote is alreade present in the database, it means that the vote was successfully added
             $this->assertTrue(true);
         }
         else{
