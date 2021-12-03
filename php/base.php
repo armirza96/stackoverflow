@@ -14,7 +14,7 @@ switch($pageToHit) {
     require_once("user/authenticate/auth.php");
   break;
   case "questions/get":
-    require_once("questions/get/get.php");
+    require_once("questions/get/get2.php");
   break;
   case "questions/add":
     require_once("questions/add/add.php");

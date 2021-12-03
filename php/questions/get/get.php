@@ -16,7 +16,7 @@ WITH cte_accepted_answers (ID,questionIDOfAcceptedAnswers, isAccepted) AS
 (
   SELECT ID,questionID, isAccepted
   FROM Answer
-  Where IsAccepted = 1
+  Where isAccepted = IsAccepted
 ),
 cte_matched_text(questionIDofMatchedText) AS
 (
@@ -146,15 +146,14 @@ if(isset($_GET["SEARCH"])) {
       // }
 
       if(strcasecmp("yes",$pieces[1]) == 0) {
-
+        $sql = str_replace("isAccepted = IsAccepted", "IsAccepted = 1", $sql);
           // $sql = str_replace("IsAccepted = 0", "IsAccepted = 1", $sql);
           $sql = str_replace("WHERE Q.ID IN (SELECT ID FROM cte_same_ids)", "WHERE Q.ID IN (SELECT ID FROM cte_same_ids)", $sql);
       } else {
-        $sql = str_replace("IsAccepted = 1", "IsAccepted = 0", $sql);
+        $sql = str_replace("isAccepted = IsAccepted", "IsAccepted = 0", $sql);
         $sql = str_replace("WHERE Q.ID IN (SELECT ID FROM cte_same_ids)", "WHERE Q.ID IN (SELECT ID FROM cte_same_ids)", $sql);
       }
     } else {
-
 
       $sql = str_replace("INNER JOIN cte_accepted_answers CAA on CTM.questionIDofMatchedText = CAA.questionIDOfAcceptedAnswers", " ", $sql);
     }
